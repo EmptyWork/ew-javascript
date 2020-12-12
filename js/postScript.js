@@ -1,17 +1,19 @@
-// Global variable
+/**
+ *  postScript.js
+ *  Created by EmptyWork
+ * 
+ **/
 const post = document.querySelector('#post');
 const postCounter = document.querySelectorAll('.postcounter')[0];
 const preview = document.querySelectorAll('.preview')[0];
-let map = {}; // mapping other key to be use.
-let images;
+let map = {};
 
 post.addEventListener('keydown', (e) => {
-    map[e.key] = true; // set mapping key to be true
-    if( map['Control'] && e.key === 'Enter') { // checking for Control and Enter
+    map[e.key] = true;
+    if( map['Control'] && e.key === 'Enter') {
+        workFlow('is running...','post.addEventListener()');
         postCheck();
-        workFlow('Input Menggunakan Komputer');
     }
-    if(e.key === 'p') workFlow();
     setTimeout(() => {
         document.querySelector('.raw-output').innerHTML = convertValue(post.value);
         ;charCounter()
@@ -24,44 +26,72 @@ post.addEventListener('keyup', (e) => {
 
 function postCheck() {
     if(post) {
-        //single line if else statement
-        (preview) ? preview.innerHTML = convertValue(post.value) : console.error( 'container with the class of \'.preview\' doesn\'t exist.');
-        images = preview.querySelectorAll('image');
+        if(preview) {
+            workFlow('running...','postCheck()');
+            preview.innerHTML = convertValue(post.value, 1);
+        } else {
+            workFlow('error: .preview not found','postCheck()');
+            console.error( 'container with the class of \'.preview\' doesn\'t exist.');
+        }
     } else {
         console.error('\'container with the id of \'#post\' doesn\'t exist.');
     }
 }
 
-// Converting the value into array to be process
-function convertValue(text) {
-    // let arr = text.split(/(\[+\w+:+[\w\s]+\])/g); // only inside [\w:\w]
+/** 
+*   Converting the value into array to be process
+*
+*   @param text
+*
+**/
+
+function convertValue(text, log) {
+    if(log) workFlow('start converting text','convertValue()');
     let arr = text.match(/\[.*?\]|\[imgs=\]/g);
-    // ([\[\{])[:\w]+(\})
     const arrStore = text.match(/\[.*?\]|\[imgs=\]/g);
     text = htmlInjectionIncoder(text);
     if(arr) {
         arr.forEach(convertCase);
         for(let i = 0; i < arrStore.length; i++) {
+            if(log) workFlow('converting '+arrStore[i].slice(0, 20)+'...','convertCase()');
             text = text.split(arrStore[i]).join(arr[i]);
         }
-    }  // running individual check of each item inside the array
-    // return arr;
+    }
+    if(log) workFlow('done converting','convertValue()');
     return arrayToString(text);
 }
 
-// with the support of comma between words.
-// TODO FIX: known error: comma at the end of paragraf will be deleted
-function arrayToString(y) {
-    return y.toString().replace(/,(?!,)/g, " ");
+
+/** 
+*   With the support of comma between words.
+*
+*   @param text
+*
+*   TODO FIX: known error: comma at the end of paragraf will be deleted
+**/
+
+function arrayToString(text) {
+    return text.toString().replace(/,(?!,)/g, " ");
 }
 
-// remove any html tag from the input
-function htmlInjectionIncoder(y) {
-    return y.replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, " ");
+/** 
+*   Remove any html tag from the input
+*
+*   @param text
+*
+*   TODO FIX: known error: comma at the end of paragraf will be deleted
+**/
+
+function htmlInjectionIncoder(text) {
+    return text.replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, " ");
 }
 
-// based-char counting : inspired by twitter.com
-// only basic visual - need to be expand later
+/** 
+*   Based-char counting : inspired by twitter.com
+*
+*   TODO: only basic visual - need to be expand later
+**/
+
 function charCounter() {
     let maxChar = 140; 
     let arr = post.value.split("");
@@ -75,6 +105,15 @@ function charCounter() {
         post.style.color = "";
     }
 }
+
+/** 
+*   Converting each item into the correct tag
+*
+*   @param item
+*   @param i
+*   @param arr
+*
+**/
 
 function convertCase(item, i, arr) {
     let url;
@@ -92,7 +131,7 @@ function convertCase(item, i, arr) {
         
         arr[i] = "<"+tag+" class=\"preview-image\" src=\""+url+"\"/>";
     }
-    else if(tag === "video=https" || tag ==="video=http" || tag === "video" ) {
+    else if(tag === "video=https" || tag === "video=http" || tag === "video" ) {
         locationSlice= item.search('='); 
         url = item.slice(locationSlice+1, item.length-1);
         source = "<source src="+url+">";
@@ -107,29 +146,73 @@ function convertCase(item, i, arr) {
     }
 }
 
-let wi = 1;
 
-//need to be done next
-function workFlow(x) {
-    let logsArea = document.querySelector('.log-area');
-    if(x) newLogBase(x, logsArea);
-}
-
-function newLogBase(x, y) {
-    let logBase = document.createElement('div');
-    logBase.classList.add('lognew');
-    if(x) logBase.innerHTML = "["+wi+"]: "+x;
-    y.appendChild(logBase);
-    wi++;
-}
-
-function biggerImage() {
-    console.log(images);
-}
+/** 
+*   Copy
+*
+**/
 
 function copyItem() {
     let x = document.querySelector('.raw-output');
     if(x.value) {
         navigator.clipboard.writeText(x.value);
     } 
+}
+
+/**
+*   Console-related function and variable
+*   
+**/
+
+let wi = 1;
+const logsArea = document.querySelector('.log-area');
+
+/** 
+*   Act as the message for the console
+*
+*   @param text
+*   @param textid
+*
+**/
+
+function workFlow(text, textid) {
+    let timeout = wi * 200;
+    if(text) setTimeout(() => {
+        newLogBase(text, logsArea, textid);
+        checkItem();
+        wi = 1;
+    }, timeout);
+    wi++;
+}
+
+/** 
+*   Creating the base for the message
+*
+*   @param text
+*   @param id
+*   @param textid
+*
+**/
+
+function newLogBase(text, id, textid) {
+    let logBase = document.createElement('div');
+    logBase.classList.add('lognew');
+    if(text) logBase.innerHTML = "<span>"+textid+":</span> "+text;
+    id.appendChild(logBase);
+    logBase.scrollBy({top: 100, left: 0, behavior: 'smooth' });
+}
+
+/** 
+*   Checking the number of logs that have been sent
+*
+**/
+
+function checkItem() {
+    let logs = logsArea.querySelectorAll('div');
+    if(logs.length > 50) {
+        let needToDelete = logs.length - 50;
+        for(let i = 0; i < needToDelete; i++){
+            logsArea.removeChild(logs[i]);
+        }
+    }
 }

@@ -35,7 +35,7 @@ body {
 }
 .project {
     border: 4px solid #2c2c2c;
-    padding: 0px 40px;
+    padding: 0px 20px;
     padding-bottom: 40px;
     position: relative;
     overflow-y: auto;
@@ -50,11 +50,9 @@ body {
     padding: 20px;
 }
 .button {
-    /* display: none; */
     cursor: pointer;
     font-size: 0.8rem;
     padding: 10px;
-    /* position: fixed; */
     height: fit-content;
     top: 0;
     right: 0;
@@ -96,7 +94,6 @@ body {
     padding: 10px;
 }
 .raw-header {
-    width: 50%;
     display: flex;
 }
 .preview {
@@ -151,10 +148,6 @@ body {
 }
 .postcounter {
     display: inline;
-    /* font-weight: 600;
-    position: absolute;
-    top: 20px;
-    right: 20px; */
 }
 .log-header {
     position: relative;
@@ -184,8 +177,26 @@ body {
     color: #d3d2d2;
     font-size: 0.9rem;
     padding: 10px;
-    height: 50px;
+    height: 400px;
     overflow-y: auto;
+}
+.log-area > div {
+    animation: loading 500ms;
+    animation-delay: 30ms;
+    padding: 3px 0px;
+}
+.log-area > div > span {
+    background-color: green;
+    border-radius: 2px;
+    padding: 2px 4px;
+}
+@keyframes loading {
+    0% {
+        margin-left: 200px;
+    }
+    100% {
+        margin-left: unset;
+    }
 }
 *::-webkit-scrollbar {
     width: 5px;
