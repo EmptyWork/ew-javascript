@@ -10,7 +10,6 @@
 <body>
     <div class="ew-navbar">
         <a class="ew-navbar_brand" href="http://github.com/EmptyWork" target="_blank"><img src="./images/ew-logo.png"/></a> 
-        <!-- <div class="ew-navbar_text">Testing</div> -->
     </div>
     <div class="project">
         <h2 class="header">
@@ -20,13 +19,27 @@
         </h2>
         <button class="button" onclick="postCheck();">Run</button><a href="https://github.com/EmptyWork/ew-javascript" target="_blank" style="background-color: #940f94;" class="button">Source-code</a>
         <section class="content flex">
-            <textarea id="post">[imgs=https://i.imgur.com/5jqpdCw.gif][h1:My Markup Language - Testing][b:EmptyWork] | [i:error][hr:][li:List-1][li:List-2][li:List-3][p:Jadi kemarin waktu bosan aku kepikiran untuk belajar membuat new markup language][imgs=https://i.imgur.com/LODdWUM.png?2][h4:NoHTMLSupport]<h1>Header ini tidak berfungsi</h1>[q:Hari yang indah]</textarea>
+            <textarea id="post">[imgs=./images/ew-logo.png][h1:Selamat Datang | EmptyWork][p:Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet exercitationem expedita beatae, dolor assumenda totam eum. Perferendis pariatur molestias temporibus quo distinctio velit hic voluptates, aut voluptatibus commodi tempora magni?]</textarea>
             <div class="preview"></div>
         </section>
         <section class="content flex">
-            <div class="raw"></div><div class="log-area"></div>
+            <div class="raw">
+                <div class="raw-header">
+                    <div class="text button">Converted Text</div><div class="button" onclick="copyItem();">Copy</div>
+                </div>
+                <textarea class="raw-output" readonly></textarea>
+            </div>
+            <div class="log">
+                <div class="log-header">
+                    <div class="text button">Console-Log</div>
+                    <div class="circle green"></div>
+                    <div class="circle yellow"></div>
+                    <div class="circle red"></div>
+                </div>
+                <div class="log-area"></div>
+            </div>
         </section>
     </div>
 </body>
-<script src="./js/postScript.js"></script>
+<script src="./js/postScript-dev.js"></script>
 </html>

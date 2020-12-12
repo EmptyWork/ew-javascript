@@ -71,10 +71,10 @@ body {
     flex-wrap: wrap;
     gap: 10px;
 }
-#post,.preview,.raw,.log-area {
+#post,.preview,.raw-output,.log-area {
     height: fit-content;
 }
-#post,.preview {
+#post,.preview  {
     font-size: 1rem;
     min-height: 20vh;
     padding: 20px;
@@ -82,15 +82,39 @@ body {
     max-width: 400px;
     width: 100%;
 }
+.raw,.log {
+    max-width: 400px;
+    width: 100%;
+}
+.raw-output {
+    cursor: default;
+    font-size: 1rem;
+    width: 100%;
+    min-height: 150px;
+    resize: none;
+    outline: none;
+    padding: 10px;
+}
+.raw-header {
+    width: 50%;
+    display: flex;
+}
 .preview {
     background-color: #191919;
     color: #cecece;
     overflow-y: auto;
     padding-bottom: 40px;
 }
+.text {
+    cursor: default;
+    background-color: #27303b;
+}
+.text:hover {
+    filter: none;
+}
 .preview::after {
     content: "Preview";
-    background-color: #2078eb;
+    background-color: #27303b;
     font-size: 0.8rem;
     position: absolute;
     bottom: 0;
@@ -132,18 +156,42 @@ body {
     top: 20px;
     right: 20px; */
 }
-.raw,.log-area {
-    background-color: #e6e6e6;
-    color: #212121;
-    max-width: 500px;
+.log-header {
+    position: relative;
+}
+.circle {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    z-index: 4;
+}
+.red {background-color: #f13b3b;}
+.green {background-color: #19f119;}
+.yellow {background-color: yellow;}
+.circle:nth-child(2) {
+    margin-right: 17px;
+}
+.circle:nth-child(3) {
+    margin-right: 34px;
+}
+.log-area {
+    background-color: #050220;
+    color: #d3d2d2;
+    font-size: 0.9rem;
     padding: 10px;
-    margin-top: 10px;
+    height: 50px;
+    overflow-y: auto;
 }
-.raw::before {
-    content: "converted-text: ";
+*::-webkit-scrollbar {
+    width: 5px;
 }
-.log-area::before {
-    content: "Console-Log";
+*::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 @media screen and (min-width: 1444px) {
     :root {
