@@ -116,29 +116,32 @@ function charCounter() {
 **/
 
 function convertCase(item, i, arr) {
-    let url;
-    let locationSlice = item.search(':');
-    if(locationSlice === -1) locationSlice = item.search('=');
+    let url, altText, altTextLoc;
+    let locationSlice = item.search('=');
+    if(locationSlice === -1) locationSlice = item.search(':');
     let tag = item.slice(1, locationSlice);
     tag = tag.toLowerCase();
     let x = item.slice(locationSlice+1, item.length-1);
+
     if(tag === "br" || tag === "hr") {arr[i] = "<"+tag+"/>";}
-    else if(tag === "imgs=https" || tag === "imgs=http" || tag === "imgs") {
+    else if(tag === "imgs") {
         locationSlice= item.search('='); 
         url = item.slice(locationSlice+1, item.length-1);
         tag = item.slice(1, locationSlice-1);
-        tag = tag.toLowerCase();
+        altTextLoc = url.search(':');
+        altText = url.slice(altTextLoc+1);
+        url = url.slice(0, altTextLoc);
         
-        arr[i] = "<"+tag+" class=\"preview-image\" src=\""+url+"\"/>";
+        arr[i] = "<"+tag+" class=\"preview-image\" alt=\""+altText+"\" src=\""+url+"\"/>";
     }
-    else if(tag === "video=https" || tag === "video=http" || tag === "video" ) {
+    else if(tag === "video" ) {
         locationSlice= item.search('='); 
         url = item.slice(locationSlice+1, item.length-1);
         source = "<source src="+url+">";
 
         arr[i] = "<"+tag+" class=\"preview-video\" autoplay nocontrols>"+source+"Your browser does not support the video tag."+"</"+tag+">";
     }
-    else if(locationSlice === -1) {
+    else if(locationSlice === -1 || !tag) {
         x = item.slice(1, item.length-1);
         arr[i] = x;
     } else {
