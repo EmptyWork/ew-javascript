@@ -161,7 +161,7 @@ function convertCase(item, i, arr) {
 * 
 **/
 
-let sLocS, sLocE, sTag, sTxt, sFull;
+let sLocS, sLocE, sTag, sTagL, sTxt, sFull; 
 
 /** 
 *   Looking inside parameter for matches
@@ -184,6 +184,7 @@ function styleImplementer(text) {
 *   @param arr
 *   @param text
 *
+*   TODO FIX: Buggy as hell
 **/
 
 function styleReplacer(arr, text) {
@@ -191,17 +192,19 @@ function styleReplacer(arr, text) {
         console.log("text=> "+text);
         sLocS = text.search(arr[i]);
         if(arr[i] == arr[i+1]) {
-            sLocE = text.match(/`[\-\s]/g);
-            console.log(sLocE);
+            sLocE = text.match(/\w\w`/g);
             sLocE = text.search(sLocE[0]);
-            sTxt = text.slice(sLocS+2, sLocE)+ " ";
+            sTxt = text.slice(sLocS+2, sLocE+2);
+            sFull = text.slice(sLocS, sLocE+3);
         } else {
             sLocE = text.search(arr[i+1]);
             sTxt = text.slice(sLocS+2, sLocE+1);
+            sFull = text.slice(sLocS, sLocE+2);
         }
-        sFull = text.slice(sLocS, sLocE+2);
+        sTagL = text.search("`");
+        sTag = text.slice(sLocS, sTagL);
+        console.log(sTag+" <- "+sTagL + " - " +sLocS);
         console.log(sTxt+"[sTxt]<->[sFull]"+sFull);
-        sTag = text.slice(sLocS, sLocS+1);
 
         switch(sTag){
             case 'b': sTxt = "<"+sTag+">"+sTxt+"</"+sTag+">"; break;
@@ -224,6 +227,7 @@ function styleReplacer(arr, text) {
 
 function copyItem() {
     let x = document.querySelector('.raw-output');
+    workFlow("Copying "+htmlInjectionIncoder(x.value.slice(0, 20))+"...", 'copyItem()');
     if(x.value) {
         navigator.clipboard.writeText(x.value);
     } 
