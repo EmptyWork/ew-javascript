@@ -1,0 +1,345 @@
+* {
+    box-sizing: border-box;
+    transition: 100ms ease-in;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        &-track {
+            background-color: transparent;
+        }
+    }
+}
+
+:root {
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+}
+
+$bg-color: #232937;
+$db-color: #1a1e28;
+$dd-color: #1f2430;
+$ld-color: #43675b;
+$lt-color: #7290aa;
+$tx-color: #e4f0fc;
+$ac-color: #31ae84;
+$lr-color: #df4577;
+
+
+body {
+    background-color: $bg-color;
+    color: $tx-color;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    background-color: $ac-color;
+    border: none;
+    cursor: pointer;
+    color: $tx-color;
+    height: fit-content;
+    padding: 10px 15px;
+    outline: none;
+    right: 0;
+    top: 0;
+
+    &:hover {
+        filter: grayscale(50%);
+    }
+
+    &-area {
+        display: flex;
+        
+        div, a {
+            border: none;
+            cursor: pointer;
+            display: inline;
+            outline: none;
+            padding: 10px 15px;
+
+            &:hover {
+                filter: grayscale(30%);
+            }
+        }
+    }
+}
+
+.circle {
+    border-radius: 50%;
+    display: block;
+    height: 15px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    z-index: 4;
+
+    &-cl-g {
+        background-color: #f13b3b;
+    }
+
+    &-cl-r {
+        background-color: #19f119;
+    }
+
+    &-cl-y {
+        background-color: yellow;
+    }
+
+    &:nth-child(2) {
+        margin-right: 17px;
+    }
+    &:nth-child(3) {
+        margin-right: 34px;
+    }
+}
+
+.ew-navbar {
+    background-color: $db-color;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    min-height: 70px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    &_brand,&_text {
+        margin: auto 0;
+    }
+
+    &_brand img {
+        height: 45%;
+        margin-left: 20px;
+        max-height: 30px;
+    }
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.inside {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(auto, max-content) 1fr;
+}
+
+.log {
+    margin-top: 20px;
+    &-area {
+        background-color: $db-color;
+        color: $lt-color;
+        font-size: 0.9rem;
+        min-height: calc(1rem + 20px);
+        max-height: 250px;
+        overflow-y: auto;
+        padding: 10px;
+
+        div {
+            animation: loading 400ms;
+            padding: 3px 0px;
+        
+            span {
+                color: $tx-color;
+                background-color: #31ae84;
+            }
+        }
+    }
+
+    &-header {
+        position: relative;
+    }
+
+}
+
+.log, .raw {
+    width: 100%;
+}
+
+.log-area,#post,.preview,.raw-output {
+    height: fit-content;
+}
+
+.post {
+    background-color: $db-color;
+    border: none;
+    border-left: 10px solid $ld-color;
+    color: $tx-color;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    resize: none;
+
+    &::placeholder {
+        color: $lt-color;
+    }
+
+    &,.preview {
+        font-size: 1rem;
+        min-height: 20vh;
+        padding: 20px;
+        position: relative;
+        width: 100%;
+    }
+
+    &counter {
+        background-color: #31ae84;
+        border-radius: 5px;
+        display: inline;
+        padding: 0 10px;
+    }
+}
+
+.project {
+    height: calc(100vh - 70px);
+    max-width: 500px;
+    overflow-y: auto;
+    padding: 0px 20px;
+    padding-bottom: 40px;
+    position: relative;
+
+    & .header {
+        background-color: $bg-color;
+        padding: 20px;
+        position: sticky;
+        text-align: center;
+        top: 0;
+        z-index: 9;
+    }
+}
+
+.preview {
+    background-color: #191919;
+    border-top: 5px solid #31ae84;
+    color: $tx-color;
+    height: 100%;
+    max-width: unset;
+    overflow-y: auto;
+    padding: 20px;
+    padding-top: 20px;
+    position: relative;
+    width: 100%;
+
+    &::after {
+        content: "Preview";
+        background-color: #31ae84;
+        color: $tx-color;
+        font-size: 0.8rem;
+        border-radius: 0px 0px 5px 5px;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        border-left: 5px solid $lr-color;
+        padding-left: 10px;
+        z-index: 0;
+    }
+
+    &-image {
+        max-height: 150px;
+        object-fit: cover;
+        object-position: bottom;
+        width: 100%;
+    }
+}
+
+.raw {
+
+    &-output {
+        background-color: $db-color;
+        border: none;
+        border-left: 10px solid $ld-color;
+        color: $tx-color;
+        cursor: default;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        min-height: 150px;
+        outline: none;
+        padding: 20px;
+        resize: none;
+        width: 100%;
+
+        &::placeholder {
+            color: $lt-color;
+        }
+    }
+
+    &-header {
+        display: flex;
+    }
+}
+
+.run {
+    background-color: #31ae84;
+}
+
+.select-text {
+    background-color: $dd-color;
+    border: none;
+    color: $tx-color;
+    font-size: 1rem;
+    outline: none;
+    padding: 10px;
+}
+
+.sourcecode {
+    background-color: $lr-color;
+    color: $tx-color;
+}
+
+.shown {
+    position: absolute;
+
+    //temporary
+    &::before {
+        content: "Shown";
+        background-color: rgba(228, 26, 26, 0.651);
+        height: 100%;
+        left: 0;
+        padding-top: 100px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.text {
+    cursor: default;
+    background-color: $dd-color;
+
+    &:hover {
+        filter: none;
+    }
+}
+
+@keyframes loading {
+    0% {
+        margin-left: 70px;
+    }
+    100% {
+        margin-left: unset;
+    }
+}
+
+@media screen and (min-width: 1444px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+   .inside {
+       grid-template-columns: 1fr;
+   } 
+}
