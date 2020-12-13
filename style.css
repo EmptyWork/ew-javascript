@@ -64,6 +64,53 @@ body {
 .button:hover {
     filter: grayscale(50%);
 }
+.select-text {
+    color: #e6e6e6;
+    border: none;
+    padding: 5px;
+    outline: none;
+    background-color: #27303b;
+}
+option {
+    border: none;
+    outline: none;
+}
+.btn-area {
+    display: flex;
+}
+.btn-area > div,.btn-area > a {
+    cursor: pointer;
+    display: inline;
+    border: none;
+    padding: 5px 15px;
+    outline: none;
+    /* background-color: #27303b; */
+}
+
+.btn-area > div:hover,.btn-area > a:hover {
+    filter: grayscale(30%);
+}
+.run {
+    background-color: green;
+}
+.sourcecode {
+    background-color: #2078eb;
+    color: #d3d2d2;
+}
+.shown {
+    position: relative;
+}
+.shown::before {
+    content: "Shown";
+    padding-top: 100px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(228, 26, 26, 0.651);
+}
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -96,12 +143,6 @@ body {
 .raw-header {
     display: flex;
 }
-.preview {
-    background-color: #191919;
-    color: #cecece;
-    overflow-y: auto;
-    padding-bottom: 40px;
-}
 .text {
     cursor: default;
     background-color: #27303b;
@@ -109,9 +150,17 @@ body {
 .text:hover {
     filter: none;
 }
+.preview {
+    background-color: #191919;
+    border-top: 10px solid #27303b;
+    color: #cecece;
+    overflow-y: auto;
+    padding-bottom: 40px;
+}
 .preview::after {
     content: "Preview";
     background-color: #27303b;
+    border-radius: 10px 10px 0px 0px;
     font-size: 0.8rem;
     position: absolute;
     bottom: 0;
@@ -181,8 +230,7 @@ body {
     overflow-y: auto;
 }
 .log-area > div {
-    animation: loading 500ms;
-    animation-delay: 30ms;
+    animation: loading 400ms;
     padding: 3px 0px;
 }
 .log-area > div > span {
@@ -192,7 +240,7 @@ body {
 }
 @keyframes loading {
     0% {
-        margin-left: 200px;
+        margin-left: 70px;
     }
     100% {
         margin-left: unset;

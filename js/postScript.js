@@ -7,12 +7,13 @@ const post = document.querySelector('#post');
 const postCounter = document.querySelectorAll('.postcounter')[0];
 const preview = document.querySelectorAll('.preview')[0];
 let map = {};
+let log;
 
 post.addEventListener('keydown', (e) => {
     map[e.key] = true;
     if( map['Control'] && e.key === 'Enter') {
         workFlow('is running...','post.addEventListener()');
-        postCheck();
+        postCheck(1);
     }
     setTimeout(() => {
         document.querySelector('.raw-output').innerHTML = convertValue(post.value);
@@ -24,7 +25,8 @@ post.addEventListener('keyup', (e) => {
     delete map[e.key];
 })
 
-function postCheck() {
+function postCheck(rlog) {
+    if(rlog) log = rlog;
     if(post) {
         if(preview) {
             workFlow('running...','postCheck()');
@@ -45,7 +47,7 @@ function postCheck() {
 *
 **/
 
-function convertValue(text, log) {
+function convertValue(text) {
     if(log) workFlow('start converting text','convertValue()');
     let arr = text.match(/\[.*?\]|\[imgs=\]/g);
     const arrStore = text.match(/\[.*?\]|\[imgs=\]/g);
@@ -53,11 +55,11 @@ function convertValue(text, log) {
     if(arr) {
         arr.forEach(convertCase);
         for(let i = 0; i < arrStore.length; i++) {
-            if(log) workFlow('converting '+arrStore[i].slice(0, 20)+'...','convertCase()');
             text = text.split(arrStore[i]).join(arr[i]);
         }
     }
     if(log) workFlow('done converting','convertValue()');
+    log = 0;
     return arrayToString(text);
 }
 
@@ -77,13 +79,15 @@ function arrayToString(text) {
 /** 
 *   Remove any html tag from the input
 *
-*   @param text
+*   @param text:string - data to be parse and convert
 *
 *   TODO FIX: known error: comma at the end of paragraf will be deleted
 **/
 
 function htmlInjectionIncoder(text) {
-    return text.replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, " ");
+    text = text.replace("<", "&lt;");
+    text = text.replace(">", "&gt;");
+    return text.replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, "");
 }
 
 /** 
@@ -116,12 +120,14 @@ function charCounter() {
 **/
 
 function convertCase(item, i, arr) {
+    if(log) workFlow('converting '+item.slice(0, 20)+'...','convertCase()');
     let url, altText, altTextLoc;
     let locationSlice = item.search('=');
     if(locationSlice === -1) locationSlice = item.search(':');
     let tag = item.slice(1, locationSlice);
     tag = tag.toLowerCase();
     let x = item.slice(locationSlice+1, item.length-1);
+    x = styleImplementer(x);
 
     if(tag === "br" || tag === "hr") {arr[i] = "<"+tag+"/>";}
     else if(tag === "imgs") {
@@ -147,6 +153,57 @@ function convertCase(item, i, arr) {
     } else {
         arr[i] = "<"+tag+">"+x+"</"+tag+">";
     }
+}
+
+/**
+*   Style implementer - Converting any styling into the correct html tag
+* 
+* 
+**/
+
+let sLocS, sLocE, sTag, sTxt, sFull;
+
+/** 
+*   Looking inside parameter for matches
+*
+*   @param text
+*
+**/
+
+function styleImplementer(text) {
+    let styleLocator = text.match(/\w`/g);
+    if(log && styleLocator) workFlow("found styles - "+styleLocator, "styleImplementer()");
+    if(styleLocator) return styleReplacer(styleLocator, text);
+    return text;
+}
+
+/** 
+*   Converting each item into the correct tag
+*
+*   @param arr
+*   @param text
+*
+**/
+
+function styleReplacer(arr, text) {
+    for(let i = 0; i < arr.length;) {
+        sLocS = text.search(arr[i]);
+        sLocE = text.search(arr[i+1]);
+        sTxt = text.slice(sLocS+2, sLocE+1);
+        sFull = text.slice(sLocS, sLocE+2);
+        sTag = text.slice(sLocS, sLocS+1);
+
+        switch(sTag){
+            case 'b': sTxt = "<"+sTag+">"+sTxt+"</"+sTag+">"; break;
+            case 'i': sTxt = "<"+sTag+">"+sTxt+"</"+sTag+">"; break;
+            default : sTxt = sTxt; break;
+        }
+
+        i += 2;
+        if(log) workFlow("converting "+sFull, "styleReplacer()");
+        text = text.replace(sFull, sTxt);
+    }
+    return text;
 }
 
 
@@ -185,7 +242,7 @@ function workFlow(text, textid) {
         checkItem();
         wi = 1;
     }, timeout);
-    wi++;
+    wi += 2;
 }
 
 /** 
@@ -218,4 +275,31 @@ function checkItem() {
             logsArea.removeChild(logs[i]);
         }
     }
+}
+
+/** 
+*   Select type area - display only
+*
+*   TODO: Will be expand next
+*
+**/
+
+const sId = document.querySelector('.select-text');
+
+sId.addEventListener('change', function() {
+    let value = sId.value;
+    showContainer(value);
+});
+
+/** 
+*   Will show id based on the value 
+*
+*   @param data
+*
+**/
+
+function showContainer(data) {
+    let storeData, currentData;
+    currentData = data;
+    if(storeData);
 }
