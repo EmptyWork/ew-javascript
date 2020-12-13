@@ -15,6 +15,9 @@ post.addEventListener('keydown', (e) => {
         workFlow('is running...','post.addEventListener()');
         postCheck(1);
     }
+    if(map['Control'] && e.key === 'b') {
+        selectionModify();
+    }
     setTimeout(() => {
         document.querySelector('.raw-output').innerHTML = convertValue(post.value);
         ;charCounter()
@@ -172,7 +175,6 @@ let sLocS, sLocE, sTag, sTagL, sTxt, sFull;
 
 function styleImplementer(text) {
     let styleLocator = text.match(/\w`|\w`]|\w`\s/g);
-    console.log(styleLocator);
     if(log && styleLocator) workFlow("found styles - "+styleLocator, "styleImplementer()");
     if(styleLocator) return styleReplacer(styleLocator, text);
     return text;
@@ -189,7 +191,6 @@ function styleImplementer(text) {
 
 function styleReplacer(arr, text) {
     for(let i = 0; i < arr.length;) {
-        console.log("text=> "+text);
         sLocS = text.search(arr[i]);
         if(arr[i] == arr[i+1]) {
             sLocE = text.match(/\w\w`/g);
@@ -203,8 +204,6 @@ function styleReplacer(arr, text) {
         }
         sTagL = text.search("`");
         sTag = text.slice(sLocS, sTagL);
-        console.log(sTag+" <- "+sTagL + " - " +sLocS);
-        console.log(sTxt+"[sTxt]<->[sFull]"+sFull);
 
         switch(sTag){
             case 'b': sTxt = "<"+sTag+">"+sTxt+"</"+sTag+">"; break;
@@ -289,6 +288,23 @@ function checkItem() {
             logsArea.removeChild(logs[i]);
         }
     }
+}
+
+/** 
+*   Selection
+*
+*   TODO: Will be expand next
+*
+**/
+
+let sel;
+
+function selectionModify() {
+    const selC = sel = window.getSelection().toString();
+    const pVal = post.value;
+    sel = '<b>'+sel+'</b>';
+    sel = pVal.replace(selC, sel);
+    post.innerHTML = sel;
 }
 
 /** 
