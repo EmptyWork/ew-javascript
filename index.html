@@ -11,42 +11,44 @@
     <div class="ew-navbar">
         <a class="ew-navbar_brand" href="http://github.com/EmptyWork" target="_blank"><img src="./images/ew-logo.png"/></a> 
     </div>
-    <div class="project">
-        <h2 class="header">
-            [<div class="postcounter">140</div>]
-            TextConverter - 
-            <small>Emptywork</small>
-        </h2>
-        <div class="btn-area">
-            <select class="select-text">
-                <option>Input-Mode</option>
-                <option>Converted-Text</option>
-            </select>
-            <div class="run" onclick="postCheck(1);">Run</div>
-            <a class="sourcecode" target="_blank" href="https://github.com/EmptyWork/ew-javascript">Code</a>
+    <div class="inside">
+        <div class="project">
+            <h2 class="header">
+                <div class="postcounter">140</div>
+                TextConverter - 
+                <small>Emptywork</small>
+            </h2>
+            <div class="btn-area">
+                <select class="select-text">
+                    <option>Input-Mode</option>
+                    <option>Converted-Text</option>
+                </select>
+                <div class="run" onclick="postCheck(1);">Run</div>
+                <a class="sourcecode" target="_blank" href="https://github.com/EmptyWork/ew-javascript">Code</a>
+            </div>
+            <section class="content flex">
+                <textarea placeholder="input your text in here..." id="post">[p:testing i`hello` b`helly` b`selamat datang`][hr:][br:][li:b`point 1` - i`sedih`]</textarea>
+                <div class="raw">
+                    <div class="raw-header">
+                        <div class="text button">Converted Text</div><div class="button" onclick="copyItem();">Copy</div>
+                    </div>
+                    <textarea placeholder="converted-text will be shown here..." class="raw-output" readonly></textarea>
+                </div>
+            </section>
+            <section class="content flex">
+                <div class="log">
+                    <div class="log-header">
+                        <div class="text button">Console-Log</div>
+                        <div class="circle green"></div>
+                        <div class="circle yellow"></div>
+                        <div class="circle red"></div>
+                    </div>
+                    <div class="log-area">
+                    </div>
+                </div>
+            </section>
         </div>
-        <section class="content flex">
-            <textarea placeholder="input your text in here..." id="post">[p:testing i`hello` b`helly` b`selamat datang`][hr:][br:][li:b`point 1` - i`sedih`]</textarea>
-            <div class="raw">
-                <div class="raw-header">
-                    <div class="text button">Converted Text</div><div class="button" onclick="copyItem();">Copy</div>
-                </div>
-                <textarea placeholder="converted-text will be shown here..." class="raw-output" readonly></textarea>
-            </div>
-            <div class="preview"></div>
-        </section>
-        <section class="content flex">
-            <div class="log">
-                <div class="log-header">
-                    <div class="text button">Console-Log</div>
-                    <div class="circle green"></div>
-                    <div class="circle yellow"></div>
-                    <div class="circle red"></div>
-                </div>
-                <div class="log-area">
-                </div>
-            </div>
-        </section>
+        <div class="preview"></div>
     </div>
 </body>
 <script src="./js/postScript.js"></script>

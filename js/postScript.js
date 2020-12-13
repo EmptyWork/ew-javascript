@@ -102,10 +102,10 @@ function charCounter() {
 
     postCounter.innerHTML = maxChar - arr.length;
     if(arr.length > maxChar) {
-        postCounter.style.color = "red";
+        postCounter.style.backgroundColor = "red";
         post.style.color = "#cececece";
     } else {
-        postCounter.style.color = "";
+        postCounter.style.backgroundColor = "";
         post.style.color = "";
     }
 }
@@ -171,7 +171,8 @@ let sLocS, sLocE, sTag, sTxt, sFull;
 **/
 
 function styleImplementer(text) {
-    let styleLocator = text.match(/\w`/g);
+    let styleLocator = text.match(/\w`|\w`]|\w`\s/g);
+    console.log(styleLocator);
     if(log && styleLocator) workFlow("found styles - "+styleLocator, "styleImplementer()");
     if(styleLocator) return styleReplacer(styleLocator, text);
     return text;
@@ -187,10 +188,19 @@ function styleImplementer(text) {
 
 function styleReplacer(arr, text) {
     for(let i = 0; i < arr.length;) {
+        console.log("text=> "+text);
         sLocS = text.search(arr[i]);
-        sLocE = text.search(arr[i+1]);
-        sTxt = text.slice(sLocS+2, sLocE+1);
+        if(arr[i] == arr[i+1]) {
+            sLocE = text.match(/`[\-\s]/g);
+            console.log(sLocE);
+            sLocE = text.search(sLocE[0]);
+            sTxt = text.slice(sLocS+2, sLocE)+ " ";
+        } else {
+            sLocE = text.search(arr[i+1]);
+            sTxt = text.slice(sLocS+2, sLocE+1);
+        }
         sFull = text.slice(sLocS, sLocE+2);
+        console.log(sTxt+"[sTxt]<->[sFull]"+sFull);
         sTag = text.slice(sLocS, sLocS+1);
 
         switch(sTag){
@@ -203,7 +213,7 @@ function styleReplacer(arr, text) {
         if(log) workFlow("converting "+sFull, "styleReplacer()");
         text = text.replace(sFull, sTxt);
     }
-    return text;
+    return text.slice(0,text.length);
 }
 
 
