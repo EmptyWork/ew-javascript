@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://raw.githubusercontent.com/EmptyWork/ew-javascript/master/images/ew-logo.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://raw.githubusercontent.com/EmptyWork/ew-javascript/master/images/ew.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">Ew Javascript</h3>
