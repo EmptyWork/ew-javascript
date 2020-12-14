@@ -126,6 +126,64 @@ body {
     gap: 10px;
 }
 
+.float-notif {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9;
+
+    &_message {
+        animation: loading 400ms;
+        background-color: $dd-color;
+        height: fit-content;
+        margin: 0px 20px 20px 0px;
+        max-width: calc(100% - 70px);
+        padding: 10px 20px;
+        right: 0;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    &_header {
+        display: flex;
+        font-weight: bold;
+        font-style: oblique;
+        padding: 7px 0px;
+        position: relative;
+        justify-content: space-between;
+    }
+
+    &_exit {
+        cursor: pointer;
+        height: 20px;
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 20px;
+
+        & span {
+            background-color: $tx-color;
+            display: block;
+            height: 14px;
+            position: absolute;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            top: 50%;
+            left: 50%;
+            width: 3px;
+
+            &.left {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &hover {
+                filter: opacity(50%);
+            }
+        }
+    }
+}
+
 .inside {
     display: grid;
     width: 100%;

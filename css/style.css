@@ -133,6 +133,79 @@ body {
   gap: 10px;
 }
 
+.float-notif {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9;
+}
+
+.float-notif_message {
+  -webkit-animation: loading 400ms;
+          animation: loading 400ms;
+  background-color: #1f2430;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0px 20px 20px 0px;
+  max-width: calc(100% - 70px);
+  padding: 10px 20px;
+  right: 0;
+  width: 100%;
+  max-width: 250px;
+}
+
+.float-notif_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  font-style: oblique;
+  padding: 7px 0px;
+  position: relative;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.float-notif_exit {
+  cursor: pointer;
+  height: 20px;
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 20px;
+}
+
+.float-notif_exit span {
+  background-color: #e4f0fc;
+  display: block;
+  height: 14px;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  top: 50%;
+  left: 50%;
+  width: 3px;
+}
+
+.float-notif_exit span.left {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.float-notif_exit spanhover {
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+}
+
 .inside {
   display: -ms-grid;
   display: grid;

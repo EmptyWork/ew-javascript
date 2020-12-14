@@ -20,7 +20,7 @@ post.addEventListener('keydown', (e) => {
     }
     setTimeout(() => {
         document.querySelector('.raw-output').innerHTML = convertValue(post.value);
-        ;charCounter()
+        charCounter();
     }, 200);
 });
 
@@ -62,6 +62,7 @@ function convertValue(text) {
         }
     }
     if(log) workFlow('done converting','convertValue()');
+    notifMe('Converting Success');
     log = 0;
     return arrayToString(text);
 }
@@ -99,18 +100,65 @@ function htmlInjectionIncoder(text) {
 *   TODO: only basic visual - need to be expand later
 **/
 
-function charCounter() {
+function charCounter(type) {
     let maxChar = 140; 
     let arr = post.value.split("");
 
-    postCounter.innerHTML = maxChar - arr.length;
-    if(arr.length > maxChar) {
-        postCounter.style.backgroundColor = "red";
-        post.style.color = "#cececece";
+    if(type) {
+        postCounter.innerHTML = arr.length;
     } else {
-        postCounter.style.backgroundColor = "";
-        post.style.color = "";
+        postCounter.innerHTML = maxChar - arr.length;
+        if(arr.length > maxChar) {
+            postCounter.style.backgroundColor = "#df4577";
+            post.style.color = "#b4c6d7";
+            notifMe('Your input is larger than ' + maxChar);
+        } else {
+            postCounter.style.backgroundColor = "";
+            post.style.color = "";
+        }
     }
+}
+
+/** 
+*   Based-char counting : inspired by twitter.com
+*
+*   TODO: only basic visual - need to be expand later
+**/
+
+let unqidStored = [];
+let status = [];
+let id = 0;
+const floatNotif = document.querySelector('#float-notif');
+
+function notifMe(message) {
+    
+    let unqid = 'Mx-'+id;
+
+    // console.log(unqidStored);
+
+    console.log("status "+id+" ->"+status);
+
+    if(unqidStored != unqid && status[id] !== 1) {
+        // console.log('Stored');
+        unqidStored[id] = unqid;
+        status[id] = 1;
+        newMessage(message, floatNotif, unqid, id);
+        setTimeout(function(){deleteMessage(id);status[id] = 0;id--}, 5000);
+        id++;
+    } else {
+        // console.log('Still Stored');
+    }
+}
+
+function deleteMessage(id) {
+    floatNotif.querySelector('.messageid_'+id).remove();
+}
+
+function newMessage(message, base, messageid, id) {
+    let messageBody = document.createElement('div');
+    messageBody.classList.add('float-notif_message', 'messageid_'+id);
+    if(message) messageBody.innerHTML = '<div class="float-notif_header">'+messageid+'<div class="float-notif_exit" onclick="deleteMessage('+id+')"><span></span><span class="left"></span></div></div>'+message;
+    base.appendChild(messageBody);
 }
 
 /** 
