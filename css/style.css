@@ -236,8 +236,10 @@ body {
 }
 
 .log-area div span {
+  border-radius: 10px;
   color: #e4f0fc;
   background-color: #31ae84;
+  padding: 2px 7px;
 }
 
 .log-header {

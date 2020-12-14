@@ -62,7 +62,7 @@ function convertValue(text) {
         }
     }
     if(log) workFlow('done converting','convertValue()');
-    notifMe('Converting Success');
+    if(log) notifMe('Converting Success', 0);
     log = 0;
     return arrayToString(text);
 }
@@ -111,7 +111,7 @@ function charCounter(type) {
         if(arr.length > maxChar) {
             postCounter.style.backgroundColor = "#df4577";
             post.style.color = "#b4c6d7";
-            notifMe('Your input is larger than ' + maxChar);
+            notifMe('Your input is larger than ' + maxChar, 1);
         } else {
             postCounter.style.backgroundColor = "";
             post.style.color = "";
@@ -126,8 +126,8 @@ function charCounter(type) {
 **/
 
 const floatNotif = document.querySelector('#float-notif');
-let unqidStored, status = [];
-let id = 0;
+let unqidStored = [], status = [];
+let notifTimeout = 10000;
 
 /** 
 *   Main function of the notifme
@@ -136,18 +136,26 @@ let id = 0;
 *   @param message
 *   #@param id - deleted (v.0.2.0 - notifMe Update)
 *
-*   TODO: still buggy and need to expand more
+*   TODO: need to expand more
 **/
 
-function notifMe(message) {
+function notifMe(message, id) {
+    id++;
     let unqid = 'Mx-'+id;
-
-    if(unqidStored != unqid && status[id] !== 1) {
-        unqidStored[id] = unqid;
-        status[id] = 1;
-        newMessage(message, floatNotif, unqid, id);
-        setTimeout(function(){deleteMessage(id);status[id] = 0;id--}, 5000);
-        id++;
+    
+    if(unqidStored[id] != unqid) {
+        if(!status[id]) {
+            unqidStored[id] = unqid;
+            status[id] = 1;
+            newMessage(message, floatNotif, unqid);
+            setTimeout(function(){deleteMessage(unqid);status[id] = 0;}, notifTimeout);
+        }
+    } else {
+        if(status[id] === 0) {
+            status[id] = 1;
+            newMessage(message, floatNotif, unqid);
+            setTimeout(function(){deleteMessage(unqid);status[id] = 0;}, notifTimeout);
+        }
     }
 }
 
@@ -166,14 +174,13 @@ function deleteMessage(id) {
 *   @param message
 *   @param base
 *   @param messageid
-*   @param id
 *
 **/
 
-function newMessage(message, base, messageid, id) {
+function newMessage(message, base, messageid) {
     let messageBody = document.createElement('div');
-    messageBody.classList.add('float-notif_message', 'messageid_'+id);
-    if(message) messageBody.innerHTML = '<div class="float-notif_header">'+messageid+'<div class="float-notif_exit" onclick="deleteMessage('+id+')"><span></span><span class="left"></span></div></div>'+message;
+    messageBody.classList.add('float-notif_message', 'messageid_'+messageid);
+    if(message) messageBody.innerHTML = '<div class="float-notif_header">'+messageid+'<div class="float-notif_exit" onclick="deleteMessage('+messageid+')"><span></span><span class="left"></span></div></div>'+message;
     base.appendChild(messageBody);
 }
 

@@ -206,8 +206,10 @@ body {
             padding: 3px 0px;
         
             span {
+                border-radius: 10px;
                 color: $tx-color;
                 background-color: #31ae84;
+                padding: 2px 7px;
             }
         }
     }
