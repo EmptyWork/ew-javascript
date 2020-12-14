@@ -120,39 +120,55 @@ function charCounter(type) {
 }
 
 /** 
-*   Based-char counting : inspired by twitter.com
+*   NotifMe Section
 *
 *   TODO: only basic visual - need to be expand later
 **/
 
-let unqidStored = [];
-let status = [];
-let id = 0;
 const floatNotif = document.querySelector('#float-notif');
+let unqidStored, status = [];
+let id = 0;
+
+/** 
+*   Main function of the notifme
+*   parsing the text and convert it into notification-div
+*
+*   @param message
+*   #@param id - deleted (v.0.2.0 - notifMe Update)
+*
+*   TODO: still buggy and need to expand more
+**/
 
 function notifMe(message) {
-    
     let unqid = 'Mx-'+id;
 
-    // console.log(unqidStored);
-
-    console.log("status "+id+" ->"+status);
-
     if(unqidStored != unqid && status[id] !== 1) {
-        // console.log('Stored');
         unqidStored[id] = unqid;
         status[id] = 1;
         newMessage(message, floatNotif, unqid, id);
         setTimeout(function(){deleteMessage(id);status[id] = 0;id--}, 5000);
         id++;
-    } else {
-        // console.log('Still Stored');
     }
 }
+
+/** 
+*   Handling deleting process
+*
+**/
 
 function deleteMessage(id) {
     floatNotif.querySelector('.messageid_'+id).remove();
 }
+
+/** 
+*   Creating the base for the notification
+*
+*   @param message
+*   @param base
+*   @param messageid
+*   @param id
+*
+**/
 
 function newMessage(message, base, messageid, id) {
     let messageBody = document.createElement('div');
