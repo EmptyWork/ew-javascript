@@ -127,7 +127,7 @@ function charCounter(type) {
 
 const floatNotif = document.querySelector('#float-notif');
 let unqidStored = [], status = [];
-let notifTimeout = 10000;
+let notifTimeout = 5000;
 
 /** 
 *   Main function of the notifme
@@ -165,7 +165,9 @@ function notifMe(message, id) {
 **/
 
 function deleteMessage(id) {
+    let convertId = id.slice(3, id.length);
     floatNotif.querySelector('.messageid_'+id).remove();
+    status[convertId] = 0;
 }
 
 /** 
@@ -180,7 +182,7 @@ function deleteMessage(id) {
 function newMessage(message, base, messageid) {
     let messageBody = document.createElement('div');
     messageBody.classList.add('float-notif_message', 'messageid_'+messageid);
-    if(message) messageBody.innerHTML = '<div class="float-notif_header">'+messageid+'<div class="float-notif_exit" onclick="deleteMessage('+messageid+')"><span></span><span class="left"></span></div></div>'+message;
+    if(message) messageBody.innerHTML = '<div class="float-notif_header">'+messageid+'<div class="float-notif_exit" onclick="deleteMessage(\''+messageid+'\')"><span></span><span class="left"></span></div></div>'+message;
     base.appendChild(messageBody);
 }
 
