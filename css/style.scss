@@ -137,13 +137,32 @@ body {
     &_message {
         animation: loading 400ms;
         background-color: $dd-color;
+        border-right: 3px solid $ac-color;
         height: fit-content;
         margin: 0px 20px 20px 0px;
         max-width: calc(100% - 70px);
         padding: 10px 20px;
+        position: relative;
         right: 0;
         width: 100%;
         max-width: 250px;
+
+        &::after {
+            content: "";
+            border: 10px solid transparent;
+            border-right: 10px solid $ac-color;
+            position: absolute;
+            right: 0;
+            top: 15px;
+        }
+
+        .inmessage {
+            background-color: $db-color;
+            border-radius: 5px;
+            color: $lt-color;
+            font-style: italic;
+            padding: 2px 5px;
+        }
     }
     
     &_header {
@@ -172,6 +191,7 @@ body {
             top: 50%;
             left: 50%;
             width: 3px;
+            z-index: 9;
 
             &.left {
                 transform: translate(-50%, -50%) rotate(45deg);

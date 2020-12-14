@@ -62,7 +62,7 @@ function convertValue(text) {
         }
     }
     if(log) workFlow('done converting','convertValue()');
-    if(log) notifMe('Converting Success', 0);
+    if(log) notifMe('Converting Success', null, 800);
     log = 0;
     return arrayToString(text);
 }
@@ -126,8 +126,7 @@ function charCounter(type) {
 **/
 
 const floatNotif = document.querySelector('#float-notif');
-let unqidStored = [], status = [];
-let notifTimeout = 5000;
+let unqidStored = [], status = []
 
 /** 
 *   Main function of the notifme
@@ -139,9 +138,14 @@ let notifTimeout = 5000;
 *   TODO: need to expand more
 **/
 
-function notifMe(message, id) {
+function notifMe(message, id, to) {
+    let notifTimeout = 10000, unqid;
+    if(!id) id = Math.round(Math.random() * 100 + 50);
+    if(to) notifTimeout = to;
     id++;
-    let unqid = 'Mx-'+id;
+    unqid = 'Mx-'+id;
+
+    console.log(status);
     
     if(unqidStored[id] != unqid) {
         if(!status[id]) {
@@ -300,6 +304,7 @@ function styleReplacer(arr, text) {
 function copyItem() {
     let x = document.querySelector('.raw-output');
     workFlow("Copying "+htmlInjectionIncoder(x.value.slice(0, 20))+"...", 'copyItem()');
+    notifMe('Copying <span class="inmessage">'+htmlInjectionIncoder(x.value.slice(0, 20))+"...</span>", 2, 800);
     if(x.value) {
         navigator.clipboard.writeText(x.value);
     } 

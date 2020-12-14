@@ -151,15 +151,34 @@ body {
   -webkit-animation: loading 400ms;
           animation: loading 400ms;
   background-color: #1f2430;
+  border-right: 3px solid #31ae84;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   margin: 0px 20px 20px 0px;
   max-width: calc(100% - 70px);
   padding: 10px 20px;
+  position: relative;
   right: 0;
   width: 100%;
   max-width: 250px;
+}
+
+.float-notif_message::after {
+  content: "";
+  border: 10px solid transparent;
+  border-right: 10px solid #31ae84;
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+
+.float-notif_message .inmessage {
+  background-color: #1a1e28;
+  border-radius: 5px;
+  color: #7290aa;
+  font-style: italic;
+  padding: 2px 5px;
 }
 
 .float-notif_header {
@@ -194,6 +213,7 @@ body {
   top: 50%;
   left: 50%;
   width: 3px;
+  z-index: 9;
 }
 
 .float-notif_exit span.left {
