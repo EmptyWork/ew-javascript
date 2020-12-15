@@ -8,6 +8,7 @@
 <div align="center">
 
 [Github-Page](https://emptywork.github.io/ew-javascript/)
+[Eazbi](http://eazbi.rf.gd)
 
 </div>
 

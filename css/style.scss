@@ -4,6 +4,7 @@
 
     &::-webkit-scrollbar {
         width: 4px;
+
         &-track {
             background-color: transparent;
         }
@@ -53,8 +54,9 @@ body {
 
     &-area {
         display: flex;
-        
-        div, a {
+
+        div,
+        a {
             border: none;
             cursor: pointer;
             display: inline;
@@ -94,6 +96,7 @@ body {
     &:nth-child(2) {
         margin-right: 17px;
     }
+
     &:nth-child(3) {
         margin-right: 34px;
     }
@@ -109,7 +112,8 @@ body {
     width: 100%;
     z-index: 10;
 
-    &_brand,&_text {
+    &_brand,
+    &_text {
         margin: auto 0;
     }
 
@@ -169,7 +173,7 @@ body {
             padding: 2px 5px;
         }
     }
-    
+
     &_header {
         display: flex;
         font-weight: bold;
@@ -217,6 +221,7 @@ body {
 
 .log {
     margin-top: 20px;
+
     &-area {
         background-color: $db-color;
         color: $lt-color;
@@ -229,7 +234,7 @@ body {
         div {
             animation: loading 400ms;
             padding: 3px 0px;
-        
+
             span {
                 border-radius: 10px;
                 color: $tx-color;
@@ -245,11 +250,15 @@ body {
 
 }
 
-.log, .raw {
+.log,
+.raw {
     width: 100%;
 }
 
-.log-area,#post,.preview,.raw-output {
+.log-area,
+#post,
+.preview,
+.raw-output {
     height: fit-content;
 }
 
@@ -266,7 +275,8 @@ body {
         color: $lt-color;
     }
 
-    &,.preview {
+    &,
+    .preview {
         font-size: 1rem;
         min-height: 20vh;
         padding: 20px;
@@ -323,7 +333,12 @@ body {
         right: 5px;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         border-left: 5px solid $lr-color;
         padding-left: 10px;
         z-index: 0;
@@ -411,6 +426,7 @@ body {
     0% {
         margin-left: 70px;
     }
+
     100% {
         margin-left: unset;
     }
@@ -423,7 +439,7 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-   .inside {
-       grid-template-columns: 1fr;
-   } 
+    .inside {
+        grid-template-columns: 1fr;
+    }
 }
