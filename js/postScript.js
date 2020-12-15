@@ -62,7 +62,7 @@ function convertValue(text) {
         }
     }
     if(log) workFlow('done converting','convertValue()');
-    if(log) notifMe('Converting Success', null, 800);
+    if(log) notifMe('Converting Success', null, 3000);
     log = 0;
     return arrayToString(text);
 }
@@ -304,7 +304,7 @@ function styleReplacer(arr, text) {
 function copyItem() {
     let x = document.querySelector('.raw-output');
     workFlow("Copying "+htmlInjectionIncoder(x.value.slice(0, 20))+"...", 'copyItem()');
-    notifMe('Copying <span class="inmessage">'+htmlInjectionIncoder(x.value.slice(0, 20))+"...</span>", 2, 800);
+    notifMe('Copying <span class="inmessage">'+htmlInjectionIncoder(x.value.slice(0, 20))+"...</span>", 2, 3000);
     if(x.value) {
         navigator.clipboard.writeText(x.value);
     } 
