@@ -441,3 +441,23 @@ function showContainer(data) {
     currentData = data;
     if (storeData);
 }
+
+/** 
+ *   howTo area
+ *
+ *   TODO: Will be expand next
+ *
+ **/
+
+let howToTrigger = document.querySelector('.howto-message');
+let howTo = document.querySelector('.howto-float');
+
+console.log(howTo);
+
+howToTrigger.addEventListener('mouseover', function () {
+    howTo.classList.add('on');
+})
+
+howToTrigger.addEventListener('mouseout', function () {
+    howTo.classList.remove('on');
+})

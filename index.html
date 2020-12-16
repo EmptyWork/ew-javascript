@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript</title>
     <link rel="shortcut icon" href="./images/ew.png" type="image/x-png">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.min.css">
 </head>
 
 <body>
     <div class="ew-navbar">
         <a class="ew-navbar_brand" href="http://github.com/EmptyWork" target="_blank"><img
                 src="./images/ew-logo.png" /></a>
-        <div class="ew-navbar_text">EmptyWork</div>
+        <div class="ew-navbar_text"></div>
     </div>
     <div class="inside">
         <div class="project">
@@ -28,6 +28,39 @@
                 </select>
                 <div class="run" onclick="postCheck(1);">Run</div>
                 <a class="sourcecode" target="_blank" href="https://github.com/EmptyWork/ew-javascript">Code</a>
+                <a class="howto" href="#">
+                    <div class="howto-message">
+                        <div class="howto-note">howto(?)</div>
+                        <div class="howto-float">
+                            <div class="howto-float_content">
+                                <b>Cara penggunaan</b><br />
+                                <code>
+                                    [<span style="color:#f14b4b">tag</span>:
+                                    tulisan]
+                                </code><br />
+                                ex.
+                                <code>
+                                    [<span style="color:#f14b4b">h1</span>:
+                                    ini ikan bukan?]
+                                </code><br />
+                                <b>Cara styling</b><br />
+                                <small style="line-height: 1rem;">Untuk saat ini styling hanya<br /> <code>b``</code> :
+                                    <b>Bold</b> <br /> <code>i``</code> <i>Italic</i></small>
+                                <br />
+                                <code>[...
+                                    <span style="color:#4bc2f1">tag`</span>tulisan<span style="color:#4bc2f1">`</span>
+                                    ...]
+                                </code><br />
+                                ex. <code>
+                                    [<span style="color:#f14b4b">h1</span>:
+                                    ini
+                                    <span style="color:#4bc2f1">i`</span>ikan<span style="color:#4bc2f1">`</span>
+                                    bukan?]
+                                </code><br />
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
             <section class="content flex">
                 <textarea placeholder="input your text in here..." class="post" id="post"></textarea>

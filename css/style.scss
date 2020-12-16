@@ -54,6 +54,7 @@ body {
 
     &-area {
         display: flex;
+        position: relative;
 
         div,
         a {
@@ -210,6 +211,74 @@ body {
                 filter: opacity(50%);
             }
         }
+    }
+}
+
+.howto {
+    color: $lt-color;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+
+    &:hover,
+    *:hover {
+        filter: none !important;
+    }
+
+    &-message {
+        position: relative;
+        padding: unset;
+    }
+
+    &-float * {
+        cursor: default !important;
+    }
+
+    &-float {
+        display: none !important;
+        top: 43px;
+        left: -175px;
+        position: absolute;
+        height: fit-content;
+        z-index: 3;
+
+        &.on {
+            display: block !important;
+        }
+
+        &_content {
+            background-color: $dd-color;
+            display: block !important;
+            position: relative;
+            width: 250px;
+            z-index: 1;
+            padding: 0.6rem 0.8rem !important;
+
+            code {
+                background-color: $db-color;
+                border-radius: 4px;
+                padding: 0.2rem 0.4rem;
+                line-height: 2rem;
+            }
+
+            &::after {
+                content: "";
+                border: 15px solid transparent;
+                border-bottom: 15px solid $dd-color;
+                position: absolute;
+                top: -30px;
+                left: 180px;
+                z-index: 7;
+            }
+        }
+    }
+
+    &-note {
+        padding: 0 !important;
+        text-decoration: dotted;
+        text-decoration-color: inherit;
+        z-index: 2;
     }
 }
 
