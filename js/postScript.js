@@ -28,17 +28,27 @@ post.addEventListener('keyup', (e) => {
     delete map[e.key];
 })
 
+/** 
+ *   Checking for the required div
+ *
+ *   @param rlog - checking if log need to be post
+ *
+ **/
+
 function postCheck(rlog) {
-    if (rlog) log = rlog;
     if (post) {
         if (preview) {
+            if (rlog) log = rlog;
             workFlow('running...', 'postCheck()');
             preview.innerHTML = convertValue(post.value, 1);
         } else {
             workFlow('error: .preview not found', 'postCheck()');
+            notifMe('container with the class of \'.preview\' doesn\'t exist.', 801, 4000);
             console.error('container with the class of \'.preview\' doesn\'t exist.');
         }
     } else {
+        workFlow('error: #preview not found', 'postCheck()');
+        notifMe('container with the class of \'#post\' doesn\'t exist.', 800, 4000);
         console.error('\'container with the id of \'#post\' doesn\'t exist.');
     }
 }
@@ -46,7 +56,7 @@ function postCheck(rlog) {
 /** 
  *   Converting the value into array to be process
  *
- *   @param text
+ *   @param text - message or string that need to be convert
  *
  **/
 
@@ -71,19 +81,19 @@ function convertValue(text) {
 /** 
  *   With the support of comma between words.
  *
- *   @param text
+ *   @param arr - array that need to be convert
  *
  *   TODO FIX: known error: comma at the end of paragraf will be deleted
  **/
 
-function arrayToString(text) {
-    return text.toString().replace(/,(?!,)/g, " ");
+function arrayToString(arr) {
+    return arr.toString().replace(/,(?!,)/g, " ");
 }
 
 /** 
  *   Remove any html tag from the input
  *
- *   @param text:string - data to be parse and convert
+ *   @param text - data to be parse and convert
  *
  *   TODO FIX: known error: comma at the end of paragraf will be deleted
  **/
@@ -96,6 +106,8 @@ function htmlInjectionIncoder(text) {
 
 /** 
  *   Based-char counting : inspired by twitter.com
+ * 
+ *   @param type - type of counting
  *
  *   TODO: only basic visual - need to be expand later
  **/
@@ -133,8 +145,9 @@ let unqidStored = [],
  *   Main function of the notifme
  *   parsing the text and convert it into notification-div
  *
- *   @param message
- *   #@param id - deleted (v.0.2.0 - notifMe Update)
+ *   @param message - message to be parse
+ *   @param id - id of the message to be shown
+ *   @param to - timeout
  *
  *   TODO: need to expand more
  **/
@@ -146,8 +159,6 @@ function notifMe(message, id, to) {
     if (to) notifTimeout = to;
     id++;
     unqid = 'Mx-' + id;
-
-    console.log(status);
 
     if (unqidStored[id] != unqid) {
         if (!status[id]) {
@@ -173,6 +184,8 @@ function notifMe(message, id, to) {
 
 /** 
  *   Handling deleting process
+ * 
+ *   @param id - id of the message to be delete
  *
  **/
 
@@ -185,9 +198,9 @@ function deleteMessage(id) {
 /** 
  *   Creating the base for the notification
  *
- *   @param message
- *   @param base
- *   @param messageid
+ *   @param message - message or string that need to be parse
+ *   @param base - main div to be add
+ *   @param messageid - id of the message
  *
  **/
 
@@ -201,9 +214,9 @@ function newMessage(message, base, messageid) {
 /** 
  *   Converting each item into the correct tag
  *
- *   @param item
- *   @param i
- *   @param arr
+ *   @param item - message or string that need to be convert
+ *   @param i - index of the arr
+ *   @param arr - an array of things to be converted
  *
  **/
 
@@ -253,7 +266,7 @@ let sLocS, sLocE, sTag, sTagL, sTxt, sFull;
 /** 
  *   Looking inside parameter for matches
  *
- *   @param text
+ *   @param text - message that need to be convert
  *
  **/
 
@@ -267,8 +280,8 @@ function styleImplementer(text) {
 /** 
  *   Converting each item into the correct tag
  *
- *   @param arr
- *   @param text
+ *   @param arr - an array of items that need to be convert
+ *   @param text - original message
  *
  *   TODO FIX: Buggy as hell
  **/
@@ -334,8 +347,8 @@ const logsArea = document.querySelector('.log-area');
 /** 
  *   Act as the message for the console
  *
- *   @param text
- *   @param textid
+ *   @param text - message for the log
+ *   @param textid - function or event where's log be logged
  *
  **/
 
@@ -352,9 +365,9 @@ function workFlow(text, textid) {
 /** 
  *   Creating the base for the message
  *
- *   @param text
- *   @param id
- *   @param textid
+ *   @param text - message for the log
+ *   @param id - main div where log will be post
+ *   @param textid - id of the log (function or event)
  *
  **/
 
