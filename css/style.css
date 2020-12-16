@@ -265,7 +265,7 @@ body {
 .howto-float {
   display: none !important;
   top: 34px;
-  left: -175px;
+  left: -215px;
   position: absolute;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -304,7 +304,7 @@ body {
   border-bottom: 15px solid #1f2430;
   position: absolute;
   top: -30px;
-  left: 180px;
+  left: 210px;
   z-index: 7;
 }
 
