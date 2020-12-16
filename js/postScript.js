@@ -455,9 +455,11 @@ let howTo = document.querySelector('.howto-float');
 console.log(howTo);
 
 howToTrigger.addEventListener('mouseover', function () {
+    howTo.classList.add('animation-show');
     howTo.classList.add('on');
-})
+});
 
 howToTrigger.addEventListener('mouseout', function () {
+    howTo.classList.remove('animation-show');
     howTo.classList.remove('on');
-})
+});

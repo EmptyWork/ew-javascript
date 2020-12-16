@@ -226,6 +226,10 @@ body {
         filter: none !important;
     }
 
+    &:hover &-note::after {
+        width: calc(78% - 4px);
+    }
+
     &-message {
         position: relative;
         padding: unset;
@@ -237,7 +241,7 @@ body {
 
     &-float {
         display: none !important;
-        top: 43px;
+        top: 34px;
         left: -175px;
         position: absolute;
         height: fit-content;
@@ -245,6 +249,10 @@ body {
 
         &.on {
             display: block !important;
+        }
+
+        &.animation-show {
+            animation: show 400ms;
         }
 
         &_content {
@@ -276,9 +284,25 @@ body {
 
     &-note {
         padding: 0 !important;
+        position: relative;
         text-decoration: dotted;
         text-decoration-color: inherit;
         z-index: 2;
+
+        &::before {
+            content: "howto(?)";
+        }
+
+        &::after {
+            content: "";
+            background-color: $lt-color;
+            bottom: -2px;
+            height: 1.6px;
+            left: 2px;
+            position: absolute;
+            transition: width 200ms ease-in;
+            width: 0;
+        }
     }
 }
 
@@ -501,6 +525,23 @@ body {
     }
 }
 
+@keyframes show {
+    0% {
+        margin-left: -70px;
+        opacity: 0;
+    }
+
+    50% {
+        margin-left: 50px;
+    }
+
+    100% {
+        margin-left: unset;
+        opacity: 1;
+    }
+
+}
+
 @media screen and (min-width: 1444px) {
     :root {
         font-size: 14px;
@@ -508,6 +549,19 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+    .howto {
+        padding-right: 0 !important;
+
+        &-float {
+            top: 34px;
+            left: -185px;
+        }
+
+        &-note::before {
+            content: "(?)";
+        }
+    }
+
     .inside {
         grid-template-columns: 1fr;
     }

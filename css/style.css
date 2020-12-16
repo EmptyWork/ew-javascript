@@ -1,6 +1,6 @@
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-transition: 100ms ease-in;
   transition: 100ms ease-in;
 }
@@ -45,7 +45,7 @@ body {
 
 .button:hover {
   -webkit-filter: grayscale(50%);
-          filter: grayscale(50%);
+  filter: grayscale(50%);
 }
 
 .button-area {
@@ -67,7 +67,7 @@ body {
 .button-area div:hover,
 .button-area a:hover {
   -webkit-filter: grayscale(30%);
-          filter: grayscale(30%);
+  filter: grayscale(30%);
 }
 
 .circle {
@@ -78,7 +78,7 @@ body {
   right: 10px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 15px;
   z-index: 4;
 }
@@ -108,7 +108,7 @@ body {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto 1fr;
-      grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr;
   min-height: 70px;
   position: -webkit-sticky;
   position: sticky;
@@ -117,7 +117,8 @@ body {
   z-index: 10;
 }
 
-.ew-navbar_brand, .ew-navbar_text {
+.ew-navbar_brand,
+.ew-navbar_text {
   margin: auto 0;
 }
 
@@ -137,7 +138,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -148,8 +149,8 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   bottom: 20px;
   right: 20px;
   z-index: 9;
@@ -157,7 +158,7 @@ body {
 
 .float-notif_message {
   -webkit-animation: loading 400ms;
-          animation: loading 400ms;
+  animation: loading 400ms;
   background-color: #1f2430;
   border-right: 3px solid #31ae84;
   height: -webkit-fit-content;
@@ -198,8 +199,8 @@ body {
   padding: 7px 0px;
   position: relative;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .float-notif_exit {
@@ -217,7 +218,7 @@ body {
   height: 14px;
   position: absolute;
   -webkit-transform: translate(-50%, -50%) rotate(-45deg);
-          transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
   top: 50%;
   left: 50%;
   width: 3px;
@@ -226,12 +227,12 @@ body {
 
 .float-notif_exit span.left {
   -webkit-transform: translate(-50%, -50%) rotate(45deg);
-          transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .float-notif_exit spanhover {
   -webkit-filter: opacity(50%);
-          filter: opacity(50%);
+  filter: opacity(50%);
 }
 
 .howto {
@@ -245,7 +246,11 @@ body {
 .howto:hover,
 .howto *:hover {
   -webkit-filter: none !important;
-          filter: none !important;
+  filter: none !important;
+}
+
+.howto:hover .howto-note::after {
+  width: calc(78% - 4px);
 }
 
 .howto-message {
@@ -259,7 +264,7 @@ body {
 
 .howto-float {
   display: none !important;
-  top: 43px;
+  top: 34px;
   left: -175px;
   position: absolute;
   height: -webkit-fit-content;
@@ -270,6 +275,11 @@ body {
 
 .howto-float.on {
   display: block !important;
+}
+
+.howto-float.animation-show {
+  -webkit-animation: show 400ms;
+  animation: show 400ms;
 }
 
 .howto-float_content {
@@ -300,11 +310,28 @@ body {
 
 .howto-note {
   padding: 0 !important;
+  position: relative;
   -webkit-text-decoration: dotted;
-          text-decoration: dotted;
+  text-decoration: dotted;
   -webkit-text-decoration-color: inherit;
-          text-decoration-color: inherit;
+  text-decoration-color: inherit;
   z-index: 2;
+}
+
+.howto-note::before {
+  content: "howto(?)";
+}
+
+.howto-note::after {
+  content: "";
+  background-color: #7290aa;
+  bottom: -2px;
+  height: 1.6px;
+  left: 2px;
+  position: absolute;
+  -webkit-transition: width 200ms ease-in;
+  transition: width 200ms ease-in;
+  width: 0;
 }
 
 .inside {
@@ -312,8 +339,8 @@ body {
   display: grid;
   width: 100%;
   -ms-grid-columns: minmax(auto, max-content) 1fr;
-      grid-template-columns: minmax(auto, -webkit-max-content) 1fr;
-      grid-template-columns: minmax(auto, max-content) 1fr;
+  grid-template-columns: minmax(auto, -webkit-max-content) 1fr;
+  grid-template-columns: minmax(auto, max-content) 1fr;
 }
 
 .log {
@@ -332,7 +359,7 @@ body {
 
 .log-area div {
   -webkit-animation: loading 400ms;
-          animation: loading 400ms;
+  animation: loading 400ms;
   padding: 3px 0px;
 }
 
@@ -460,9 +487,9 @@ body {
 .preview-image {
   max-height: 150px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: bottom;
-     object-position: bottom;
+  object-position: bottom;
   width: 100%;
 }
 
@@ -544,13 +571,14 @@ body {
 
 .text:hover {
   -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 @-webkit-keyframes loading {
   0% {
     margin-left: 70px;
   }
+
   100% {
     margin-left: unset;
   }
@@ -560,8 +588,41 @@ body {
   0% {
     margin-left: 70px;
   }
+
   100% {
     margin-left: unset;
+  }
+}
+
+@-webkit-keyframes show {
+  0% {
+    margin-left: -70px;
+    opacity: 0;
+  }
+
+  50% {
+    margin-left: 50px;
+  }
+
+  100% {
+    margin-left: unset;
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  0% {
+    margin-left: -70px;
+    opacity: 0;
+  }
+
+  50% {
+    margin-left: 50px;
+  }
+
+  100% {
+    margin-left: unset;
+    opacity: 1;
   }
 }
 
@@ -572,9 +633,23 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+  .howto {
+    padding-right: 0 !important;
+  }
+
+  .howto-float {
+    top: 34px;
+    left: -185px;
+  }
+
+  .howto-note::before {
+    content: "(?)";
+  }
+
   .inside {
     -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }
+
 /*# sourceMappingURL=style.css.map */
