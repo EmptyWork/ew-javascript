@@ -242,7 +242,7 @@ body {
     &-float {
         display: none !important;
         top: 34px;
-        left: -215px;
+        left: -190px;
         position: absolute;
         height: fit-content;
         z-index: 3;
@@ -278,6 +278,11 @@ body {
                 top: -30px;
                 left: 210px;
                 z-index: 7;
+            }
+
+            hr {
+                margin-right: 80px;
+                margin-bottom: 15px;
             }
         }
     }

@@ -207,7 +207,14 @@ function deleteMessage(id) {
 function newMessage(message, base, messageid) {
     let messageBody = document.createElement('div');
     messageBody.classList.add('float-notif_message', 'messageid_' + messageid);
-    if (message) messageBody.innerHTML = '<div class="float-notif_header">' + messageid + '<div class="float-notif_exit" onclick="deleteMessage(\'' + messageid + '\')"><span></span><span class="left"></span></div></div>' + message;
+    if(message) messageBody.innerHTML = 
+    `<div class="float-notif_header">${messageid}
+        <div class="float-notif_exit" onclick="deleteMessage(${messageid})">
+            <span></span>
+            <span class="left"></span>
+        </div>
+    </div> ${message}`;
+    // if (message) messageBody.innerHTML = '<div class="float-notif_header">' + messageid + '<div class="float-notif_exit" onclick="deleteMessage(\'' + messageid + '\')"><span></span><span class="left"></span></div></div>' + message;
     base.appendChild(messageBody);
 }
 
@@ -452,8 +459,6 @@ function showContainer(data) {
 let howToTrigger = document.querySelector('.howto-message');
 let howTo = document.querySelector('.howto-float');
 
-console.log(howTo);
-
 howToTrigger.addEventListener('mouseover', function () {
     howTo.classList.add('animation-show');
     howTo.classList.add('on');
@@ -463,3 +468,5 @@ howToTrigger.addEventListener('mouseout', function () {
     howTo.classList.remove('animation-show');
     howTo.classList.remove('on');
 });
+
+console.log(`hello world ${Math.floor(89.21313)}`);
