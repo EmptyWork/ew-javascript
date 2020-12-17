@@ -123,7 +123,7 @@ function charCounter(type) {
         if (arr.length > maxChar) {
             postCounter.style.backgroundColor = "#df4577";
             post.style.color = "#b4c6d7";
-            notifMe('Your input is larger than ' + maxChar, 1);
+            notifMe(`Your input is larger than ${maxChar}`, 1);
         } else {
             postCounter.style.backgroundColor = "";
             post.style.color = "";
@@ -207,14 +207,13 @@ function deleteMessage(id) {
 function newMessage(message, base, messageid) {
     let messageBody = document.createElement('div');
     messageBody.classList.add('float-notif_message', 'messageid_' + messageid);
-    if(message) messageBody.innerHTML = 
-    `<div class="float-notif_header">${messageid}
+    if (message) messageBody.innerHTML =
+        `<div class="float-notif_header">${messageid}
         <div class="float-notif_exit" onclick="deleteMessage(${messageid})">
             <span></span>
             <span class="left"></span>
         </div>
     </div> ${message}`;
-    // if (message) messageBody.innerHTML = '<div class="float-notif_header">' + messageid + '<div class="float-notif_exit" onclick="deleteMessage(\'' + messageid + '\')"><span></span><span class="left"></span></div></div>' + message;
     base.appendChild(messageBody);
 }
 
@@ -228,7 +227,7 @@ function newMessage(message, base, messageid) {
  **/
 
 function convertCase(item, i, arr) {
-    if (log) workFlow('converting ' + item.slice(0, 20) + '...', 'convertCase()');
+    if (log) workFlow(`converting ${item.slice(0, 20)}...`, 'convertCase()');
     let url, altText, altTextLoc;
     let locationSlice = item.search('=');
     if (locationSlice === -1) locationSlice = item.search(':');
@@ -247,18 +246,22 @@ function convertCase(item, i, arr) {
         altText = url.slice(altTextLoc + 1);
         url = url.slice(0, altTextLoc);
 
-        arr[i] = "<" + tag + " class=\"preview-image\" alt=\"" + altText + "\" src=\"" + url + "\"/>";
+        arr[i] = `<${tag} class="preview-image" alt="${altText}" src="${url}"/>`;
     } else if (tag === "video") {
         locationSlice = item.search('=');
         url = item.slice(locationSlice + 1, item.length - 1);
-        source = "<source src=" + url + ">";
+        source = `<source src="${source}">`;
 
-        arr[i] = "<" + tag + " class=\"preview-video\" autoplay nocontrols>" + source + "Your browser does not support the video tag." + "</" + tag + ">";
+        arr[i] = `
+        <${tag} class="preview-vide" autoplay nocontrols>
+            ${source}
+            Your browser does not support the video tag.
+        </${tag}>`;
     } else if (locationSlice === -1 || !tag) {
         x = item.slice(1, item.length - 1);
         arr[i] = x;
     } else {
-        arr[i] = "<" + tag + ">" + x + "</" + tag + ">";
+        arr[i] = `<${tag}>${x}</${tag}>`;
     }
 }
 
@@ -279,7 +282,7 @@ let sLocS, sLocE, sTag, sTagL, sTxt, sFull;
 
 function styleImplementer(text) {
     let styleLocator = text.match(/\w`|\w`]|\w`\s/g);
-    if (log && styleLocator) workFlow("found styles - " + styleLocator, "styleImplementer()");
+    if (log && styleLocator) workFlow(`found styles - ${styleLocator}`, "styleImplementer()");
     if (styleLocator) return styleReplacer(styleLocator, text);
     return text;
 }
@@ -311,10 +314,8 @@ function styleReplacer(arr, text) {
 
         switch (sTag) {
             case 'b':
-                sTxt = "<" + sTag + ">" + sTxt + "</" + sTag + ">";
-                break;
             case 'i':
-                sTxt = "<" + sTag + ">" + sTxt + "</" + sTag + ">";
+                sTxt = `<${sTag}>${sTxt}</${sTag}>`;
                 break;
             default:
                 sTxt = sTxt;
@@ -322,7 +323,7 @@ function styleReplacer(arr, text) {
         }
 
         i += 2;
-        if (log) workFlow("converting " + sFull, "styleReplacer()");
+        if (log) workFlow(`converting ${sFull}`, "styleReplacer()");
         text = text.replace(sFull, sTxt);
     }
     return text.slice(0, text.length);
@@ -336,8 +337,9 @@ function styleReplacer(arr, text) {
 
 function copyItem() {
     let x = document.querySelector('.raw-output');
-    workFlow("Copying " + htmlInjectionIncoder(x.value.slice(0, 20)) + "...", 'copyItem()');
-    notifMe('Copying <span class="inmessage">' + htmlInjectionIncoder(x.value.slice(0, 20)) + "...</span>", 2, 3000);
+    let cuttingText = htmlInjectionIncoder(x.value.slice(0, 20))
+    workFlow(`Copying ${cuttingText}...`, 'copyItem()');
+    notifMe(`Copying <span class="inmessage">${cuttingText}...</span>`, 2, 3000);
     if (x.value) {
         navigator.clipboard.writeText(x.value);
     }
@@ -381,7 +383,7 @@ function workFlow(text, textid) {
 function newLogBase(text, id, textid) {
     let logBase = document.createElement('div');
     logBase.classList.add('lognew');
-    if (text) logBase.innerHTML = "<span>" + textid + ":</span> " + text;
+    if (text) logBase.innerHTML = `<span>${textid}:</span> ${text}`;
     id.appendChild(logBase);
     logBase.scrollBy({
         top: 100,
@@ -417,7 +419,7 @@ let sel;
 function selectionModify() {
     const selC = sel = window.getSelection().toString();
     const pVal = post.value;
-    sel = '<b>' + sel + '</b>';
+    sel = `'<b>${sel}</b>'`;
     sel = pVal.replace(selC, sel);
     post.innerHTML = sel;
 }
@@ -468,5 +470,3 @@ howToTrigger.addEventListener('mouseout', function () {
     howTo.classList.remove('animation-show');
     howTo.classList.remove('on');
 });
-
-console.log(`hello world ${Math.floor(89.21313)}`);
