@@ -158,7 +158,7 @@ function notifMe(message, id, to) {
     if (!id) id = Math.round(Math.random() * 100 + 50);
     if (to) notifTimeout = to;
     id++;
-    unqid = 'Mx-' + id;
+    unqid = `Mx-${id}`;
 
     if (unqidStored[id] != unqid) {
         if (!status[id]) {
@@ -191,7 +191,8 @@ function notifMe(message, id, to) {
 
 function deleteMessage(id) {
     let convertId = id.slice(3, id.length);
-    floatNotif.querySelector('.messageid_' + id).remove();
+    let messageToDelete = floatNotif.querySelector(`.messageid_${id}`);
+    if (messageToDelete) messageToDelete.remove();
     status[convertId] = 0;
 }
 
@@ -206,10 +207,10 @@ function deleteMessage(id) {
 
 function newMessage(message, base, messageid) {
     let messageBody = document.createElement('div');
-    messageBody.classList.add('float-notif_message', 'messageid_' + messageid);
+    messageBody.classList.add('float-notif_message', `messageid_${messageid}`);
     if (message) messageBody.innerHTML =
         `<div class="float-notif_header">${messageid}
-        <div class="float-notif_exit" onclick="deleteMessage(${messageid})">
+        <div class="float-notif_exit" onclick="deleteMessage('${messageid}')">
             <span></span>
             <span class="left"></span>
         </div>
@@ -419,7 +420,7 @@ let sel;
 function selectionModify() {
     const selC = sel = window.getSelection().toString();
     const pVal = post.value;
-    sel = `'<b>${sel}</b>'`;
+    sel = `<b>${sel}</b>`;
     sel = pVal.replace(selC, sel);
     post.innerHTML = sel;
 }
@@ -470,3 +471,16 @@ howToTrigger.addEventListener('mouseout', function () {
     howTo.classList.remove('animation-show');
     howTo.classList.remove('on');
 });
+
+/** 
+ *   manual Log
+ *
+ *   TODO: will be added soon
+ *
+ **/
+
+function mLog(a) {
+    let baseStyles = ["color: #fff", "background-color: #444", "padding: 2px 4px", "border-radius: 2px"].join(';');
+    console.log('%c Manual Log', baseStyles);
+    console.log(a);
+}
