@@ -7,7 +7,7 @@
 
 <div align="center">
 
-[Github-Page](https://emptywork.github.io/ew-javascript/)
+[Github-Page](https://emptywork.github.io/ew-javascript/) |
 [Eazbi](http://eazbi.rf.gd)
 
 </div>
@@ -23,6 +23,7 @@
 - [Tentang](#about)
 - [Rencana](#rencana)
 - [Author](#author)
+- [Todo](#author)
 
 ## Tentang <a name = "tentang"></a>
 
@@ -35,3 +36,9 @@ Kedepannya kode-kode ini akan di <i>convert</i> dan di <i>combine</i> dengan fra
 ## Author <a name = "author"></a>
 
 - [@EmptyWork](https://github.com/emptywork) - Ide & <i>Main developer</i>
+
+## Todo List <a name = "todo"></a>
+- [ ] Redone the convertion function
+- [ ] Expand the selection function
+- [ ] Expand the type-convert selection
+- [ ] Change the textarea for codeMirror

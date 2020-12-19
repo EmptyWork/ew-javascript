@@ -30,7 +30,7 @@ body {
 }
 
 .button {
-  background-color: #31ae84;
+  background-color: #386640;
   border: none;
   cursor: pointer;
   color: #e4f0fc;
@@ -123,9 +123,10 @@ body {
 }
 
 .ew-navbar_brand img {
-  height: 45%;
+  height: 45% !important;
   margin-left: 20px;
   max-height: 30px;
+  width: auto;
 }
 
 .ew-navbar_text {
@@ -160,7 +161,7 @@ body {
   -webkit-animation: loading 400ms;
   animation: loading 400ms;
   background-color: #1f2430;
-  border-right: 3px solid #31ae84;
+  border-right: 3px solid #386640;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -176,7 +177,7 @@ body {
 .float-notif_message::after {
   content: "";
   border: 10px solid transparent;
-  border-right: 10px solid #31ae84;
+  border-right: 10px solid #386640;
   position: absolute;
   right: 0;
   top: 15px;
@@ -339,6 +340,11 @@ body {
   width: 0;
 }
 
+.hidden {
+  position: absolute;
+  z-index: -1;
+}
+
 .inside {
   display: -ms-grid;
   display: grid;
@@ -371,7 +377,7 @@ body {
 .log-area div span {
   border-radius: 10px;
   color: #e4f0fc;
-  background-color: #31ae84;
+  background-color: #386640;
   padding: 2px 7px;
 }
 
@@ -391,6 +397,77 @@ body {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.preload {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #232937;
+  height: 100vh;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  top: 0;
+  width: 100vw;
+  z-index: 20;
+}
+
+.preload_brand {
+  bottom: 25px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.preload_brand img {
+  height: auto;
+  width: 45px !important;
+}
+
+.preload-loading {
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  width: 80px;
+}
+
+.loading-bar {
+  -webkit-animation: loadingbar 3000ms infinite;
+  animation: loadingbar 3000ms infinite;
+  background-color: #386640;
+  display: block;
+  height: 30px;
+  margin-bottom: 2px;
+  width: 70px;
+}
+
+.loading-text {
+  color: #7290aa;
+  letter-spacing: 4px;
+}
+
+.loading-bar:nth-of-type(1) {
+  -webkit-animation: loadingbar 2500ms infinite;
+  animation: loadingbar 2500ms infinite;
+}
+
+.loading-bar:nth-of-type(2) {
+  -webkit-animation: loadingbar 1300ms infinite;
+  animation: loadingbar 1300ms infinite;
 }
 
 .post {
@@ -429,7 +506,7 @@ body {
 }
 
 .postcounter {
-  background-color: #31ae84;
+  background-color: #386640;
   border-radius: 5px;
   display: inline;
   padding: 0 10px;
@@ -454,8 +531,8 @@ body {
 }
 
 .preview {
-  background-color: #191919;
-  border-top: 5px solid #31ae84;
+  background-color: #1f2430;
+  border-top: 5px solid #386640;
   color: #e4f0fc;
   height: 100%;
   max-width: unset;
@@ -468,7 +545,7 @@ body {
 
 .preview::after {
   content: "Preview";
-  background-color: #31ae84;
+  background-color: #386640;
   color: #e4f0fc;
   font-size: 0.8rem;
   border-radius: 0px 0px 5px 5px;
@@ -484,7 +561,7 @@ body {
 .preview h4,
 .preview h5,
 .preview h6 {
-  border-left: 5px solid #df4577;
+  border-left: 5px solid #a43257;
   padding-left: 10px;
   z-index: 0;
 }
@@ -536,7 +613,7 @@ body {
 }
 
 .run {
-  background-color: #31ae84;
+  background-color: #386640;
 }
 
 .select-text {
@@ -549,7 +626,7 @@ body {
 }
 
 .sourcecode {
-  background-color: #df4577;
+  background-color: #a43257;
   color: #e4f0fc;
 }
 
@@ -628,6 +705,66 @@ body {
   100% {
     margin-left: unset;
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes loadingbar {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 15px;
+  }
+
+  30% {
+    width: 35px;
+  }
+
+  45% {
+    width: 23px;
+  }
+
+  60% {
+    width: 50px;
+  }
+
+  70% {
+    width: 45px;
+  }
+
+  100% {
+    width: 70px;
+  }
+}
+
+@keyframes loadingbar {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 15px;
+  }
+
+  30% {
+    width: 35px;
+  }
+
+  45% {
+    width: 23px;
+  }
+
+  60% {
+    width: 50px;
+  }
+
+  70% {
+    width: 45px;
+  }
+
+  100% {
+    width: 70px;
   }
 }
 

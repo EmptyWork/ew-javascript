@@ -9,6 +9,15 @@ const preview = document.querySelectorAll('.preview')[0];
 let map = {};
 let log;
 
+function preLoad() {
+    let preload = document.querySelector('.preload');
+    let content = document.querySelector('.inside');
+    preload.style.marginTop = 'calc(-100vh + -300px)';
+    setTimeout(function () {
+        content.style.display = "grid";
+    }, 300);
+}
+
 post.addEventListener('keydown', (e) => {
     map[e.key] = true;
     if (map['Control'] && e.key === 'Enter') {
@@ -99,9 +108,7 @@ function arrayToString(arr) {
  **/
 
 function htmlInjectionIncoder(text) {
-    text = text.replace("<", "&lt;");
-    text = text.replace(">", "&gt;");
-    return text.replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, "");
+    return text.replace("<", "&lt;").replace(">", "&gt;").replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, "");
 }
 
 /** 
@@ -225,6 +232,7 @@ function newMessage(message, base, messageid) {
  *   @param i - index of the arr
  *   @param arr - an array of things to be converted
  *
+ *   TODO: NEED TO BE REDONE
  **/
 
 function convertCase(item, i, arr) {
@@ -238,7 +246,7 @@ function convertCase(item, i, arr) {
     x = styleImplementer(x);
 
     if (tag === "br" || tag === "hr") {
-        arr[i] = "<" + tag + "/>";
+        arr[i] = `"<${tag}/>"`;
     } else if (tag === "imgs") {
         locationSlice = item.search('=');
         url = item.slice(locationSlice + 1, item.length - 1);
@@ -420,9 +428,9 @@ let sel;
 function selectionModify() {
     const selC = sel = window.getSelection().toString();
     const pVal = post.value;
-    sel = `<b>${sel}</b>`;
+    sel = `[b:${sel}]`;
     sel = pVal.replace(selC, sel);
-    post.innerHTML = sel;
+    post.value = sel;
 }
 
 /** 
