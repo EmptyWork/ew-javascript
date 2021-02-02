@@ -104,7 +104,6 @@ function arrayToString(arr) {
  *
  *   @param text - data to be parse and convert
  *
- *   TODO FIX: known error: comma at the end of paragraf will be deleted
  **/
 
 function htmlInjectionIncoder(text) {
