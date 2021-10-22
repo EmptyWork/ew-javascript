@@ -9,11 +9,11 @@ const preview = document.querySelectorAll('.preview')[0];
 let map = {};
 let log;
 
-function preLoad() {
+const preLoad = () => {
   let preload = document.querySelector('.preload');
   let content = document.querySelector('.inside');
-  setTimeout(function() {preload.style.marginTop = 'calc(-100vh + -300px)';}, 2000)
-  setTimeout(function() {
+  setTimeout(() => {preload.style.marginTop = 'calc(-100vh + -300px)';}, 2000)
+  setTimeout(() => {
     content.style.display = "grid";
   }, 2100);
 }
@@ -44,7 +44,7 @@ post.addEventListener('keyup', (e) => {
  *
  **/
 
-function postCheck(rlog) {
+const postCheck = (rlog) => {
   if (post) {
     if (preview) {
       if (rlog) log = rlog;
@@ -69,7 +69,7 @@ function postCheck(rlog) {
  *
  **/
 
-function convertValue(text) {
+const convertValue = (text) => {
   if (log) workFlow('start converting text', 'convertValue()');
   let arr = text.match(/\[.*?\]|\[imgs=\]/g);
   const arrStore = text.match(/\[.*?\]|\[imgs=\]/g);
@@ -95,7 +95,7 @@ function convertValue(text) {
  *   TODO FIX: known error: comma at the end of paragraf will be deleted
  **/
 
-function arrayToString(arr) {
+const arrayToString= (arr) => {
   return arr.toString().replace(/,(?!,)/g, " ");
 }
 
@@ -106,7 +106,7 @@ function arrayToString(arr) {
  *
  **/
 
-function htmlInjectionIncoder(text) {
+const htmlInjectionIncoder = (text) => {
   return text.replace("<", "&lt;").replace(">", "&gt;").replace(/(<script(\s|\S)*?<\/script>)|(<style(\s|\S)*?<\/style>)|(<!--(\s|\S)*?-->)|(<\/?(\s|\S)*?>)/g, "");
 }
 
@@ -118,7 +118,7 @@ function htmlInjectionIncoder(text) {
  *   TODO: only basic visual - need to be expand later
  **/
 
-function charCounter(type) {
+const charCounter = (type) => {
   let maxChar = 140;
   let arr = post.value.split("");
 
@@ -158,7 +158,7 @@ let unqidStored = [],
  *   TODO: need to expand more
  **/
 
-function notifMe(message, id, to) {
+const notifMe = (message, id, to) => {
   let notifTimeout = 10000,
     unqid;
   if (!id) id = Math.round(Math.random() * 100 + 50);
@@ -171,7 +171,7 @@ function notifMe(message, id, to) {
       unqidStored[id] = unqid;
       status[id] = 1;
       newMessage(message, floatNotif, unqid);
-      setTimeout(function() {
+      setTimeout(() => {
         deleteMessage(unqid);
         status[id] = 0;
       }, notifTimeout);
@@ -180,7 +180,7 @@ function notifMe(message, id, to) {
     if (status[id] === 0) {
       status[id] = 1;
       newMessage(message, floatNotif, unqid);
-      setTimeout(function() {
+      setTimeout(() => {
         deleteMessage(unqid);
         status[id] = 0;
       }, notifTimeout);
@@ -195,7 +195,7 @@ function notifMe(message, id, to) {
  *
  **/
 
-function deleteMessage(id) {
+const deleteMessage = (id) => {
   let convertId = id.slice(3, id.length);
   let messageToDelete = floatNotif.querySelector(`.messageid_${id}`);
   if (messageToDelete) messageToDelete.remove();
@@ -211,7 +211,7 @@ function deleteMessage(id) {
  *
  **/
 
-function newMessage(message, base, messageid) {
+const newMessage = (message, base, messageid) => {
   let messageBody = document.createElement('div');
   messageBody.classList.add('float-notif_message', `messageid_${messageid}`);
   if (message) messageBody.innerHTML =
@@ -234,7 +234,7 @@ function newMessage(message, base, messageid) {
  *   TODO: NEED TO BE REDONE
  **/
 
-function convertCase(item, i, arr) {
+const convertCase = (item, i, arr) => {
   if (log) workFlow(`converting ${item.slice(0, 20)}...`, 'convertCase()');
   let url, altText, altTextLoc;
   let locationSlice = item.search('=');
@@ -288,7 +288,7 @@ let sLocS, sLocE, sTag, sTagL, sTxt, sFull;
  *
  **/
 
-function styleImplementer(text) {
+const styleImplementer = (text) => {
   let styleLocator = text.match(/\w`|\w`]|\w`\s/g);
   if (log && styleLocator) workFlow(`found styles - ${styleLocator}`, "styleImplementer()");
   if (styleLocator) return styleReplacer(styleLocator, text);
@@ -304,7 +304,7 @@ function styleImplementer(text) {
  *   TODO FIX: Buggy as hell
  **/
 
-function styleReplacer(arr, text) {
+const styleReplacer = (arr, text) => {
   for (let i = 0; i < arr.length;) {
     sLocS = text.search(arr[i]);
     if (arr[i] == arr[i + 1]) {
@@ -343,7 +343,7 @@ function styleReplacer(arr, text) {
  *
  **/
 
-function copyItem() {
+const copyItem = () => {
   let x = document.querySelector('.raw-output');
   let cuttingText = htmlInjectionIncoder(x.value.slice(0, 20))
   workFlow(`Copying ${cuttingText}...`, 'copyItem()');
@@ -369,7 +369,7 @@ const logsArea = document.querySelector('.log-area');
  *
  **/
 
-function workFlow(text, textid) {
+const workFlow = (text, textid) => {
   let timeout = wi * 200;
   if (text) setTimeout(() => {
     newLogBase(text, logsArea, textid);
@@ -388,7 +388,7 @@ function workFlow(text, textid) {
  *
  **/
 
-function newLogBase(text, id, textid) {
+const newLogBase = (text, id, textid) => {
   let logBase = document.createElement('div');
   logBase.classList.add('lognew');
   if (text) logBase.innerHTML = `<span>${textid}:</span> ${text}`;
@@ -405,7 +405,7 @@ function newLogBase(text, id, textid) {
  *
  **/
 
-function checkItem() {
+const checkItem = () => {
   let logs = logsArea.querySelectorAll('div');
   if (logs.length > 50) {
     let needToDelete = logs.length - 50;
@@ -424,7 +424,7 @@ function checkItem() {
 
 let sel;
 
-function selectionModify() {
+const selectionModify = () => {
   const selC = sel = window.getSelection().toString();
   const pVal = post.value;
   sel = `[b:${sel}]`;
@@ -441,7 +441,7 @@ function selectionModify() {
 
 const sId = document.querySelector('.select-text');
 
-sId.addEventListener('change', function() {
+sId.addEventListener('change', () => {
   let value = sId.value;
   showContainer(value);
 });
@@ -453,7 +453,7 @@ sId.addEventListener('change', function() {
  *
  **/
 
-function showContainer(data) {
+const showContainer = (data) => {
   let storeData, currentData;
   currentData = data;
   if (storeData);
@@ -469,12 +469,12 @@ function showContainer(data) {
 let howToTrigger = document.querySelector('.howto-message');
 let howTo = document.querySelector('.howto-float');
 
-howToTrigger.addEventListener('mouseover', function() {
+howToTrigger.addEventListener('mouseover', () => {
   howTo.classList.add('animation-show');
   howTo.classList.add('on');
 });
 
-howToTrigger.addEventListener('mouseout', function() {
+howToTrigger.addEventListener('mouseout', () => {
   howTo.classList.remove('animation-show');
   howTo.classList.remove('on');
 });
@@ -486,7 +486,7 @@ howToTrigger.addEventListener('mouseout', function() {
  *
  **/
 
-function mLog(a) {
+const mLog = (a) => {
   let baseStyles = ["color: #fff", "background-color: #444", "padding: 2px 4px", "border-radius: 2px"].join(';');
   console.log('%c Manual Log', baseStyles);
   console.log(a);
