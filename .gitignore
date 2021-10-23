@@ -1,4 +1,2 @@
-*-dev.*
-*.backup.*
-/learning*
-*jsbeau*
+/js/postScript.js
+/js/postScript.min.js
