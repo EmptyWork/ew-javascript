@@ -460,26 +460,6 @@ const showContainer = (data) => {
 }
 
 /** 
- *   howTo area
- *
- *   TODO: Will be expand next
- *
- **/
-
-let howToTrigger = document.querySelector('.howto-message');
-let howTo = document.querySelector('.howto-float');
-
-howToTrigger.addEventListener('mouseover', () => {
-  howTo.classList.add('animation-show');
-  howTo.classList.add('on');
-});
-
-howToTrigger.addEventListener('mouseout', () => {
-  howTo.classList.remove('animation-show');
-  howTo.classList.remove('on');
-});
-
-/** 
  *   manual Log
  *
  *   TODO: will be added soon

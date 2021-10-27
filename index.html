@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project Javascript oleh EmptyWork, terdiri dari beberapa kumpulan kode javascript native."
+    />
+    <title>Ew-Javascript</title>
+    <link rel="shortcut icon" href="./images/ew-js.png" type="image/x-png" />
+    <link rel="stylesheet" href="./css/style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Project Javascript oleh EmptyWork, terdiri dari beberapa kumpulan kode javascript native.">
-  <title>Javascript</title>
-  <link rel="shortcut icon" href="./images/ew-js.png" type="image/x-png">
-  <link rel="stylesheet" href="./css/style.css">
-</head>
+    <script src="./js/postScript.js" defer></script>
+  </head>
 
-<body onload="preLoad()">
-  <section class="preload">
-    <header class="preload_brand">
-      <img src="./images/ew-js.png" width="20" height="20" alt="EmptyWork's Logo" />
-    </header>
-    <div class="preload-loading">
-      <span class="loading-bar"></span>
-      <span class="loading-bar"></span>
-      <span class="loading-bar"></span>
-      <span class="loading-text">LOADING</span>
-    </div>
-  </section>
-  <nav class="ew-navbar">
-    <a class="ew-navbar_brand" href="http://github.com/EmptyWork" target="_blank" rel="noreferrer"><img src="./images/ew-logo.png" width="20" height="20" alt="EmptyWork's Logo" /></a>
-    <div class="ew-navbar_text"></div>
-  </nav>
+  <body>
+    <section class="preload">
+      <header class="preload_brand">
+        <img src="./images/ew-js.png" width="20" height="20" alt="EmptyWork's Logo" />
+      </header>
+      <main class="preload-loading">
+        <span class="loading-bar"></span>
+        <span class="loading-bar"></span>
+        <span class="loading-bar"></span>
+        <span class="loading-text">LOADING</span>
+      </main>
+    </section>
+    <nav class="nav">
+      <a class="nav_brand" href="http://github.com/EmptyWork" target="_blank" rel="noreferrer">
+        <img src="./images/ew-logo.png" width="20" height="20" alt="EmptyWork's Logo" />
+      </a>
+      <div class="nav_text">Javascript</div>
+    </nav>
+
+      
   <div class="inside" style="display: none;">
     <div class="project">
       <h2 class="header">
@@ -105,7 +113,10 @@
     <div class="preview"></div>
   </div>
   <div class="float-notif" id="float-notif"></div>
-  <script src="./js/postScript.js"></script>
-</body>
-
+    <script>
+      window.addEventListener("load", () => {
+        preLoad()
+      })
+    </script>
+  </body>
 </html>
