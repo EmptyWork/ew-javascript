@@ -1,3 +1,16 @@
+
+:root {
+  font-size: 14px;
+}
+
+body {
+  background-color: $bg-color;
+  color: $tx-color;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
   transition: 100ms ease-in;
@@ -11,31 +24,8 @@
   }
 }
 
-:root {
-  font-size: 14px;
-}
-
 a {
   text-decoration: none;
-}
-
-$bg-color: hsl(0, 0%, 18%);
-$db-color: hsl(0, 0%, 13%);
-$dd-color: hsl(0, 0%, 15%);
-$ld-color: #43675b;
-$lt-color: hsl(0, 0%, 56%);
-$tx-color: #e4f0fc;
-$ac-color: #386640;
-$bt-color: #386640;
-$lr-color: #a43257;
-
-
-body {
-  background-color: $bg-color;
-  color: $tx-color;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
 .button {
