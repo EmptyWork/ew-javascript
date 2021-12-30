@@ -13,6 +13,22 @@
   outline: 2px solid red;
 }
 
+.accent-background {
+  background-color: var(--accent);
+}
+
+.highlight-background {
+  background-color: var(--highlight);
+}
+
+.highlight-color {
+  color: var(--highlight);
+}
+
+.accent-color {
+  color: var(--accent);
+}
+
 .skipto {
   position: fixed;
   left: 0;
