@@ -30,13 +30,39 @@
 }
 
 .skipto {
+  @extend .highlight;
+  
   position: fixed;
   left: 0;
   top: 0;
+  padding: .5rem;
   transform: translateY(-120%);
   transition: transform 200ms ease;
+  z-index: 10;
 
   &:focus {
     transform: translateY(0);
+  }
+}
+
+.highlight {
+  &:hover::before, &:focus::before {
+    transform: scaleX(1);
+  }
+
+  &::before {
+    content: "";
+    @extend .highlight-background;
+
+    position: absolute;
+    left: -10%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 120%;
+    height: 100%;
+    z-index: -1;
+    transform: scaleX(0);
+    transition: transform 200ms ease;
   }
 }

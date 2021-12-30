@@ -5,6 +5,10 @@
           box-sizing: border-box;
 }
 
+:focus {
+  outline: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -45,7 +49,7 @@ a {
   background-color: var(--accent);
 }
 
-.highlight-background, .navbar-menu a::before {
+.highlight-background, .highlight::before, .skipto::before, .navbar-menu a::before {
   background-color: var(--highlight);
 }
 
@@ -61,17 +65,42 @@ a {
   position: fixed;
   left: 0;
   top: 0;
+  padding: .5rem;
   -webkit-transform: translateY(-120%);
           transform: translateY(-120%);
   -webkit-transition: -webkit-transform 200ms ease;
   transition: -webkit-transform 200ms ease;
   transition: transform 200ms ease;
   transition: transform 200ms ease, -webkit-transform 200ms ease;
+  z-index: 10;
 }
 
 .skipto:focus {
   -webkit-transform: translateY(0);
           transform: translateY(0);
+}
+
+.highlight:hover::before, .skipto:hover::before, .navbar-menu a:hover::before, .highlight:focus::before, .skipto:focus::before, .navbar-menu a:focus::before {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.highlight::before, .skipto::before, .navbar-menu a::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 120%;
+  height: 100%;
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 200ms ease;
+  transition: -webkit-transform 200ms ease;
+  transition: transform 200ms ease;
+  transition: transform 200ms ease, -webkit-transform 200ms ease;
 }
 
 .navbar {
@@ -100,6 +129,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
   padding: .5rem 0;
   font-size: 1.3rem;
   -webkit-transition: color 200ms ease-out;
@@ -115,29 +145,6 @@ a {
       -ms-flex-align: center;
           align-items: center;
   z-index: 1;
-}
-
-.navbar-menu a:hover::before, .navbar-menu a:focus::before {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-}
-
-.navbar-menu a::before {
-  content: "";
-  position: absolute;
-  left: -10%;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 120%;
-  height: 100%;
-  z-index: -1;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transition: -webkit-transform 200ms ease;
-  transition: -webkit-transform 200ms ease;
-  transition: transform 200ms ease;
-  transition: transform 200ms ease, -webkit-transform 200ms ease;
 }
 
 .navbar-menu_icon {

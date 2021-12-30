@@ -20,6 +20,7 @@
     @extend .flex;
     
     align-items: center;
+    position: relative;
     padding: .5rem 0;
     font-size: 1.3rem;
     transition: color 200ms ease-out;
@@ -35,28 +36,10 @@
 
     a {
       @extend .flex;
+      @extend .highlight;
       align-items: center;
       z-index: 1;
       
-      &:hover::before, &:focus::before {
-        transform: scaleX(1);
-      }
-
-      &::before {
-        content: "";
-        @extend .highlight-background;
-  
-        position: absolute;
-        left: -10%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 120%;
-        height: 100%;
-        z-index: -1;
-        transform: scaleX(0);
-        transition: transform 200ms ease;
-      }
     }
 
 
