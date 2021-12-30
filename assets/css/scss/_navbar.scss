@@ -1,16 +1,52 @@
 .navbar {
+  @extend .flex;
+
   position: sticky;
-  display: flex;
   align-items: center;
   justify-content: center;
   top: 0;
-  background-color: var(--background);
   min-height: 2rem;
   width: 100%;
 
+  &-brand {
+    height: 2em;
+
+    &_text {
+      font-weight: 700;
+    }
+  }
+
+  &-left {
+    @extend .flex;
+    
+    align-items: center;
+    padding: .5rem 0;
+    font-size: 1.3rem;
+  }
+
+  &-menu {
+    @extend .flex;
+
+    &_icon {
+      width: 1em;
+    }
+  }
+
+  &-right {
+    @extend .flex;
+    
+    text-transform: uppercase;
+    gap: 1rem;
+  }
+
   &-container {
-    display: flex;
+    @extend .flex;
+    
     justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+
+    font-weight: 600;
   }
 
   li {

@@ -5,6 +5,11 @@
           box-sizing: border-box;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 :root {
   --background: red;
 }
@@ -16,17 +21,29 @@
 .container {
   max-width: 80rem;
   margin: auto;
-  background-color: aliceblue;
   height: 100%;
   width: 100%;
+}
+
+.flex, .navbar, .navbar-left, .navbar-menu, .navbar-right, .navbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.temp {
+  outline: 2px solid red;
+}
+
+.skipto {
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .navbar {
   position: -webkit-sticky;
   position: sticky;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -34,18 +51,44 @@
       -ms-flex-pack: center;
           justify-content: center;
   top: 0;
-  background-color: var(--background);
   min-height: 2rem;
   width: 100%;
 }
 
+.navbar-brand {
+  height: 2em;
+}
+
+.navbar-brand_text {
+  font-weight: 700;
+}
+
+.navbar-left {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .5rem 0;
+  font-size: 1.3rem;
+}
+
+.navbar-menu_icon {
+  width: 1em;
+}
+
+.navbar-right {
+  text-transform: uppercase;
+  gap: 1rem;
+}
+
 .navbar-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 1.5rem;
+  font-weight: 600;
 }
 
 .navbar li {
