@@ -12,6 +12,8 @@ a {
 
 :root {
   --background: red;
+  --accent: #3B5998;
+  --highlight: #FFF500;
 }
 
 .font-montserrat {
@@ -29,7 +31,7 @@ a {
   width: 100%;
 }
 
-.flex, .navbar, .navbar-left, .navbar-menu, .navbar-right, .navbar-container {
+.flex, .navbar, .navbar-left, .navbar-menu, .navbar-menu a, .navbar-right, .navbar-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,6 +39,22 @@ a {
 
 .temp {
   outline: 2px solid red;
+}
+
+.accent-background {
+  background-color: var(--accent);
+}
+
+.highlight-background, .navbar-menu a::before {
+  background-color: var(--highlight);
+}
+
+.highlight-color {
+  color: var(--highlight);
+}
+
+.accent-color, .navbar-left:hover, .navbar-left:focus {
+  color: var(--accent);
 }
 
 .skipto {
@@ -84,6 +102,42 @@ a {
           align-items: center;
   padding: .5rem 0;
   font-size: 1.3rem;
+  -webkit-transition: color 200ms ease-out;
+  transition: color 200ms ease-out;
+}
+
+.navbar-menu {
+  position: relative;
+}
+
+.navbar-menu a {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+}
+
+.navbar-menu a:hover::before, .navbar-menu a:focus::before {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.navbar-menu a::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 120%;
+  height: 100%;
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 200ms ease;
+  transition: -webkit-transform 200ms ease;
+  transition: transform 200ms ease;
+  transition: transform 200ms ease, -webkit-transform 200ms ease;
 }
 
 .navbar-menu_icon {
