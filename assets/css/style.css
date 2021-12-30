@@ -18,6 +18,10 @@ a {
   font-family: "Montserrat", sans-serif;
 }
 
+.font-aldrich {
+  font-family: 'Aldrich', sans-serif;
+}
+
 .container {
   max-width: 80rem;
   margin: auto;
@@ -39,6 +43,17 @@ a {
   position: fixed;
   left: 0;
   top: 0;
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+  -webkit-transition: -webkit-transform 200ms ease;
+  transition: -webkit-transform 200ms ease;
+  transition: transform 200ms ease;
+  transition: transform 200ms ease, -webkit-transform 200ms ease;
+}
+
+.skipto:focus {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .navbar {
