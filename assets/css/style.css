@@ -5,7 +5,50 @@
           box-sizing: border-box;
 }
 
+:root {
+  --background: red;
+}
+
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  max-width: 80rem;
+  margin: auto;
+  background-color: aliceblue;
+  height: 100%;
+  width: 100%;
+}
+
+.navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 0;
+  background-color: var(--background);
+  min-height: 2rem;
+  width: 100%;
+}
+
+.navbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navbar li {
+  list-style: none;
 }
 /*# sourceMappingURL=style.css.map */
