@@ -1,3 +1,3 @@
 # EW (EmptyWork) Javascript
 
-Collection of Javascript Native based application, way to approach the problem with ES6 and It's Implementation.
+Collection of JavaScript native based application, a way to approach the problem with ES6 and It's Implementation.
