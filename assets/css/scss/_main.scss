@@ -1,7 +1,20 @@
 .container {
   max-width: 80rem;
   margin: auto;
-  background-color: aliceblue;
   height: 100%;
   width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.temp {
+  outline: 2px solid red;
+}
+
+.skipto {
+  position: fixed;
+  left: 0;
+  top: 0;
 }
