@@ -1,6 +1,7 @@
 .navbar {
   @extend .flex;
 
+  flex: 0 0 auto;
   position: sticky;
   align-items: center;
   justify-content: center;

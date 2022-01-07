@@ -66,3 +66,8 @@
     transition: transform 200ms ease;
   }
 }
+
+.body {
+  @extend .flex;
+  flex-direction: column;
+}
