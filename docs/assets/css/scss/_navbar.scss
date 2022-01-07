@@ -23,26 +23,25 @@
     align-items: center;
     position: relative;
     padding: .5rem 0;
-    font-size: 1.3rem;
+    font-size: clamp(1em, 2.1vw, 1.2em);
     transition: color 200ms ease-out;
-
-    &:hover, &:focus {
-      @extend .accent-color;
-    }
   }
 
   &-menu {
-    @extend .flex;
+    letter-spacing: .1rem;
     position: relative;
+    
+    &_divide {
+      @extend .flex;
+    }
 
     a {
       @extend .flex;
       @extend .highlight;
+
       align-items: center;
       z-index: 1;
-      
     }
-
 
     &_icon {
       width: 1em;
@@ -62,7 +61,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5rem;
-
     font-weight: 600;
   }
 

@@ -3,6 +3,11 @@
   margin: auto;
   height: 100%;
   width: 100%;
+  padding: 2rem;
+}
+
+::selection {
+  @extend .highlight-background_dim;
 }
 
 .flex {
@@ -15,14 +20,6 @@
 
 .accent-background {
   background-color: var(--accent);
-}
-
-.highlight-background {
-  background-color: var(--highlight);
-}
-
-.highlight-color {
-  color: var(--highlight);
 }
 
 .accent-color {
@@ -50,9 +47,45 @@
     transform: scaleX(1);
   }
 
+  &-color {
+    color: var(--highlight);
+    
+    &_dim {
+      color: var(--highlight-dim);
+    }
+  }
+
+  &-background {
+    background-color: var(--highlight);
+  
+    &_dim {
+      background-color: var(--highlight-dim);
+    }
+  
+    &.highlight-href,
+    &_dim.highlight-href {
+      position: relative;
+  
+      &:is(:hover, :focus)::before {
+        width: 100%;
+      }
+  
+      &::before {
+        content: "";
+        bottom: -.4rem;
+        left: -.4rem;
+        position: absolute;
+        width: 0%;
+        background-color: #000;
+        height: .3rem;
+        transition: width 200ms ease-in;
+      }
+    }
+  }
+
   &::before {
     content: "";
-    @extend .highlight-background;
+    @extend .highlight-background_dim;
 
     position: absolute;
     left: -10%;
@@ -69,5 +102,34 @@
 
 .body {
   @extend .flex;
+  
   flex-direction: column;
+  font-size: clamp(.8rem, 2vw, 1rem);
+  line-height: 1.6;
+}
+
+.sr {
+  &-popup {
+    visibility: hidden;
+    transform: scale(0);
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  &-only {
+    position: absolute;
+  }
+}
+
+#canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
