@@ -19,9 +19,9 @@ html, body {
 }
 
 :root {
-  --background: red;
   --accent: #3B5998;
   --highlight: #FFF500;
+  --highlight-dim: #fffa5d;
 }
 
 .font-montserrat {
@@ -37,9 +37,10 @@ html, body {
   margin: auto;
   height: 100%;
   width: 100%;
+  padding: 2rem;
 }
 
-.flex, .body, .navbar, .navbar-left, .navbar-menu, .navbar-menu a, .navbar-right, .navbar-container {
+.flex, .body, .navbar, .navbar-left, .navbar-menu_divide, .navbar-menu a, .navbar-right, .navbar-container, .header, .header-action, .header-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,15 +54,7 @@ html, body {
   background-color: var(--accent);
 }
 
-.highlight-background, .highlight::before, .skipto::before, .navbar-menu a::before {
-  background-color: var(--highlight);
-}
-
-.highlight-color {
-  color: var(--highlight);
-}
-
-.accent-color, .navbar-left:hover, .navbar-left:focus {
+.accent-color {
   color: var(--accent);
 }
 
@@ -89,6 +82,50 @@ html, body {
           transform: scaleX(1);
 }
 
+.highlight-color {
+  color: var(--highlight);
+}
+
+.highlight-color_dim {
+  color: var(--highlight-dim);
+}
+
+.highlight-background {
+  background-color: var(--highlight);
+}
+
+.highlight-background_dim, ::-moz-selection, .highlight::before, .skipto::before, .navbar-menu a::before {
+  background-color: var(--highlight-dim);
+}
+
+.highlight-background_dim, ::selection, .highlight::before, .skipto::before, .navbar-menu a::before {
+  background-color: var(--highlight-dim);
+}
+
+.highlight-background.highlight-href, .highlight-background_dim.highlight-href, .highlight-href::-moz-selection, .highlight-href.highlight::before, .highlight-href.skipto::before, .navbar-menu a.highlight-href::before {
+  position: relative;
+}
+
+.highlight-background.highlight-href, .highlight-background_dim.highlight-href, .highlight-href::selection, .highlight-href.highlight::before, .highlight-href.skipto::before, .navbar-menu a.highlight-href::before {
+  position: relative;
+}
+
+.highlight-background.highlight-href:is(:hover, :focus)::before, .highlight-background_dim.highlight-href:is(:hover, :focus)::before, .highlight-href.highlight:is(:hover, :focus)::before, .highlight-href.skipto:is(:hover, :focus)::before, .navbar-menu a.highlight-href:is(:hover, :focus)::before {
+  width: 100%;
+}
+
+.highlight-background.highlight-href::before, .highlight-background_dim.highlight-href::before, .highlight-href.highlight::before, .highlight-href.skipto::before, .navbar-menu a.highlight-href::before {
+  content: "";
+  bottom: -.4rem;
+  left: -.4rem;
+  position: absolute;
+  width: 0%;
+  background-color: #000;
+  height: .3rem;
+  -webkit-transition: width 200ms ease-in;
+  transition: width 200ms ease-in;
+}
+
 .highlight::before, .skipto::before, .navbar-menu a::before {
   content: "";
   position: absolute;
@@ -112,6 +149,33 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  line-height: 1.6;
+}
+
+.sr-popup {
+  visibility: hidden;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  left: 0;
+  bottom: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.sr-only {
+  position: absolute;
+}
+
+#canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
 
 .navbar {
@@ -145,12 +209,13 @@ html, body {
           align-items: center;
   position: relative;
   padding: .5rem 0;
-  font-size: 1.3rem;
+  font-size: clamp(1em, 2.1vw, 1.2em);
   -webkit-transition: color 200ms ease-out;
   transition: color 200ms ease-out;
 }
 
 .navbar-menu {
+  letter-spacing: .1rem;
   position: relative;
 }
 
@@ -183,5 +248,93 @@ html, body {
 
 .navbar li {
   list-style: none;
+}
+
+.header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+.header-action {
+  gap: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  width: 100%;
+}
+
+.header-action-button {
+  margin-top: 1rem;
+  position: relative;
+  padding-right: 1.2rem;
+  margin-left: -.8rem;
+  padding-left: .8rem;
+}
+
+.header-action-button:hover .arrow, .header-action-button:focus .arrow {
+  -webkit-animation: arrow 600ms infinite ease;
+          animation: arrow 600ms infinite ease;
+}
+
+.header-action-button .arrow {
+  top: 40%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 2em;
+  position: absolute;
+  margin-left: .5em;
+}
+
+@-webkit-keyframes arrow {
+  50% {
+    margin-left: 0;
+  }
+  to {
+    margin-left: .5em;
+  }
+}
+
+@keyframes arrow {
+  50% {
+    margin-left: 0;
+  }
+  to {
+    margin-left: .5em;
+  }
+}
+
+.header-container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header .text {
+  font-size: clamp(1em, 2.1vw, 1.2em);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 40ch;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+
+.header .text_big {
+  max-width: 22ch;
+  font-size: clamp(1.5em, 3vw, 1.8em);
 }
 /*# sourceMappingURL=style.css.map */

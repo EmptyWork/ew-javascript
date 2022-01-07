@@ -1,0 +1,71 @@
+.header {
+  @extend .flex;
+
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+
+  &-action {
+    @extend .flex;
+
+    gap: 1rem;
+    flex-direction: column;
+    max-width: fit-content;
+    width: 100%;
+
+    &-button {
+      margin-top: 1rem;
+      position: relative;
+      padding-right: 1.2rem;
+      margin-left: -.8rem;
+      padding-left: .8rem;
+
+      &:hover,
+      &:focus {
+        .arrow {
+          animation: arrow 600ms infinite ease;
+        }
+      }
+
+      .arrow {
+        top: 40%;
+        transform: translate(0%, -50%);
+        font-size: 2em;
+        position: absolute;
+        margin-left: .5em;
+      }
+
+      @keyframes arrow {
+
+        50% {
+          margin-left: 0;
+        }
+
+        to {
+          margin-left: .5em
+        }
+      }
+    }
+  }
+
+  &-container {
+    @extend .flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text {
+    font-size: clamp(1em, 2.1vw, 1.2em);
+    width: fit-content;
+    max-width: 40ch;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    
+    &_big {
+      max-width: 22ch;
+      font-size: clamp(1.5em, 3vw, 1.8em);
+    }
+  }
+
+}

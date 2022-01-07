@@ -22,13 +22,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./lib/ewjs/a11y-link.js" defer></script>
+    <script src="./lib/ewjs/extra.js" defer></script>
   </head>
 
   <body class="body font-montserrat">
-    <a class="sr-only skipto" href="#main">skip to main</a>
     <nav class="navbar font-aldrich">
+      <a class="sr-only skipto font-montserrat" href="#main">skip to main</a>
       <div class="container navbar-container">
-        <a href="#" class="navbar-left">
+        <a href="/" class="navbar-left">
           <svg
             class="navbar-brand"
             viewBox="0 0 24 24"
@@ -51,8 +53,9 @@
         <ul class="navbar-right">
           <li class="navbar-menu"><a href="#" class="navbar-menu_text">Main</a></li>
           <li class="navbar-menu"><a href="#" class="navbar-menu_text">Demo</a></li>
-          <li class="navbar-menu">
-            <a href="https://github.com/EmptyWork/ew-javascript" target="_blank" rel="noreferrer noopener">
+          <li class="navbar-menu navbar-menu_divide">
+            <a id="repoLink" href="https://github.com/EmptyWork/ew-javascript" target="_blank" rel="noopener noreferrer"  aria-labelledby="repoLink repoText">
+              <span id="repoText" class="sr-popup">Go to the repo</span>
               <svg
                 class="navbar-menu_icon"
                 stroke="currentColor"
@@ -85,14 +88,17 @@
         </ul>
       </div>
     </nav>
-    <header class="header">
-      <div class="container">
-        <h1 class="font-aldrich">Implementing, Testing, and Proving — ECMAScript 6.
-        </h1>
+    <header class="header" id="main">
+      <div class="container header-container">
+        <div class="header-action">
+          <h1 class="font-aldrich text text_big">Design, Testing, and Implementing — 
+            <a class="highlight-background_dim highlight-href" target="_blank" href="http://es6-features.org/#Constants" title="JavaScript" rel="noopener noreferrer">ECMA 6</a>
+          </h1>
+          <div class="text"><strong>Learning</strong> the best way to approach any <strong>problem</strong> with <strong>Modern JavaScript</strong></div>
+          <a class="text font-aldrich highlight-background highlight-href header-action-button" href="#">Demo<span class="arrow">→</span></a>
+        </div>
       </div>
+      <canvas id="canvas"></canvas>
     </header>
-    <main id="main">
-      </ul>
-    </main>
   </body>
 </html>
