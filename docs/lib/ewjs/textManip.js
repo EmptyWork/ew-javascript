@@ -1,8 +1,13 @@
 const letterChanger = (id, behavior = false) => {
   let changes = document.querySelector(id)
-  const changesOriginal = changes.textContent;
-  let isHover = false;
-  let i = 0;
+  
+  const changesOriginal = changes.textContent
+  const maxLengthInterval = changesOriginal.length * 60
+  const changesLimitBeforeChanging = maxLengthInterval / 10
+  
+  let isHover = false
+  let intervalCount = 0
+  let interval = 50
 
   if(!behavior) {
     changes.addEventListener('mouseover', () => {
@@ -25,19 +30,21 @@ const letterChanger = (id, behavior = false) => {
   }
 
   setInterval(() => {
+    
     let symbol = ['!', '*', '#', '@', '%', '$', '^']
-    let innerText = changes.textContent.split('');
+    let innerText = changes.textContent.split('')
+    
     innerText[Math.floor(Math.random() * innerText.length)] = symbol[Math.floor(Math.random() * symbol.length)]
 
-    if(i == 60) {
+    if(intervalCount == maxLengthInterval) {
       changes.textContent = changesOriginal
-      i = 0
-    } else if(i > 5 && !isHover) {
+      intervalCount = 0
+    } else if(intervalCount > changesLimitBeforeChanging && !isHover) {
       changes.textContent = innerText.join('')
     }
 
-    i++
-  }, 50)
+    intervalCount++
+  }, interval)
 }
 
 {letterChanger('.change')}
