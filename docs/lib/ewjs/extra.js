@@ -32,17 +32,48 @@
  * Live Demo: <https://emptywork.github.io/ew-javascript> 
  *  */  
 
-const canvas = document.querySelector('#canvas')
-const ctx = canvas.getContext('2d')
+/**
+ * Extra.js
+ * is a file that handle all the animation that occur in the <ew-javascript>
+ * 
+ * right now its contains the script for animation logic and the behavior patters
+ * for the Crawler in the homepage. 
+ */
 
-CANVAS_WIDTH = canvas.width = innerWidth
-CANVAS_HEIGHT = canvas.height = innerHeight
-GAME_FRAME = 0
+/* Getting the canvas by its id <#canvas> and set into a scene */
+const scene = canvas;
+/* Setting the context of the said scene to 2 dimentional (2d) */
+const ctx = scene.getContext('2d')
 
-DEBUG = false
+// ======
+// SCENE INITIALIZATION
+// ======
 
-const FigureImage = new Image()
-FigureImage.src = './assets/image/spritesheet.png'
+/* Declaring the default width of the scene based on the innerWidth of the window */
+SCENE_WIDTH = scene.width = innerWidth
+/* Declaring the default height of the scene based on the innerHeight of the window */
+SCENE_HEIGHT = scene.height = innerHeight
+/* Declaring the global frame for the Scene */
+SCENE_FRAME = 0
+
+// ======
+// GLOBAL ENVIORMENT VARIABLE
+// ======
+
+/* This object can be replace by .env if you are using node.js */
+ENV = {
+  /* Enable this option to show the outline of each figure */
+  debug: false 
+}
+
+// ======
+// ASSETS
+// ======
+
+/* Creating a new Image object */
+const CrawlerImage = new Image()
+/* Giving the CrawlerImage its source */
+CrawlerImage.src = './assets/image/spritesheet.png'
 
 class Figure {
   constructor(_x, _y, _debug = null) {
@@ -75,7 +106,7 @@ class Figure {
 
   update() {
   
-    if(GAME_FRAME % 2 === 0) this.frame == 20 ? this.frame = 0 : this.frame++
+    if(SCENE_FRAME % 2 === 0) this.frame == 20 ? this.frame = 0 : this.frame++
     this.draw()
   
   }
@@ -99,7 +130,7 @@ class Crawler extends Figure {
     super.draw(this.debug)
     
     ctx.drawImage(
-      FigureImage,
+      CrawlerImage,
       this.frame * this.spriteWidth, //? the start width of the Sprite
       0, //? the start height of the Sprite
       this.spriteWidth, //? the width of the Sprite
@@ -116,12 +147,12 @@ class Crawler extends Figure {
     
     super.update()
     
-    this.x < - this.width * 2 ? this.x = CANVAS_WIDTH + this.width : this.x -= 1
+    this.x < - this.width * 2 ? this.x = SCENE_WIDTH + this.width : this.x -= 1
   
   }
 }
 
-const crawler = new Crawler(CANVAS_WIDTH, CANVAS_HEIGHT, DEBUG)
+const crawler = new Crawler(SCENE_WIDTH, SCENE_HEIGHT, ENV.debug)
 
 const animate = () => {
   
@@ -130,33 +161,33 @@ const animate = () => {
   ctx.clearRect(
     0, 
     0, 
-    CANVAS_WIDTH, 
-    CANVAS_HEIGHT
+    SCENE_WIDTH, 
+    SCENE_HEIGHT
     )
     
   crawler.update()
   
-  GAME_FRAME++
+  SCENE_FRAME++
 
 }
 
 window.addEventListener('resize', () => {
 
-  let oldWidth = CANVAS_WIDTH
+  let oldWidth = SCENE_WIDTH
   
-  CANVAS_WIDTH = canvas.width = innerWidth
-  CANVAS_HEIGHT = canvas.height = innerHeight
+  SCENE_WIDTH = scene.width = innerWidth
+  SCENE_HEIGHT = scene.height = innerHeight
   
-  crawler.y = CANVAS_HEIGHT + 9
-  crawler.x -= (oldWidth - CANVAS_WIDTH)
+  crawler.y = SCENE_HEIGHT + 9
+  crawler.x -= (oldWidth - SCENE_WIDTH)
 
-  if(DEBUG) {
+  if(ENV.debug) {
     console.log(
       `Old Width: ${oldWidth}`,
-      `\nNew Width: ${CANVAS_WIDTH}`,
-      `\nOW-NW: ${oldWidth - CANVAS_WIDTH}`,
+      `\nNew Width: ${SCENE_WIDTH}`,
+      `\nOW-NW: ${oldWidth - SCENE_WIDTH}`,
       `\nPlayer x: ${crawler.x}`,
-      `\nNew Player x: ${crawler.x - (oldWidth - CANVAS_WIDTH)}`
+      `\nNew Player x: ${crawler.x - (oldWidth - SCENE_WIDTH)}`
     );
   }
 
