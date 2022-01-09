@@ -1,50 +1,65 @@
-const letterChanger = (id, behavior = false) => {
-  let changes = document.querySelector(id)
-  
-  const changesOriginal = changes.textContent
-  const maxLengthInterval = changesOriginal.length * 60
-  const changesLimitBeforeChanging = maxLengthInterval / 10
-  
+const letterChanger = (id, behavior = false, debug = false) => {
+  let changes = document.querySelectorAll(id)
   let isHover = false
-  let intervalCount = 0
   let interval = 50
-
-  if(!behavior) {
-    changes.addEventListener('mouseover', () => {
-      changes.textContent = changesOriginal
-      isHover = true
-    })
-    
-    changes.addEventListener('focusin', () => {
-      changes.textContent = changesOriginal
-      isHover = true
-    })
   
-    changes.addEventListener('mouseout', () => {
-      isHover = false
-    })
-  
-    changes.addEventListener('focusout', () => {
-      isHover = false
-    })
+  if(debug) {
+    console.group('Function Letter Changer is initialized')
+    console.log(`Found ${changes.length} element(s) with \`${id}\`:`)
   }
-
-  setInterval(() => {
+  
+  changes.forEach(elem => {
+    const elemOriginal = elem.textContent
+    const maxLengthInterval = elemOriginal.length * 60
+    const elemLimitBeforeChanging = maxLengthInterval / 10
+    let intervalCount = 0
     
-    let symbol = ['!', '*', '#', '@', '%', '$', '^']
-    let innerText = changes.textContent.split('')
-    
-    innerText[Math.floor(Math.random() * innerText.length)] = symbol[Math.floor(Math.random() * symbol.length)]
-
-    if(intervalCount == maxLengthInterval) {
-      changes.textContent = changesOriginal
-      intervalCount = 0
-    } else if(intervalCount > changesLimitBeforeChanging && !isHover) {
-      changes.textContent = innerText.join('')
+  
+    if(debug) {
+      console.group(elem)
+      console.log("Target element:", elem)
+      console.log(`T.textContent: "${elemOriginal}"`)
+      console.groupEnd()
     }
+  
+    if(!behavior) {
+      elem.addEventListener('mouseover', () => {
+        elem.textContent = elemOriginal
+        isHover = true
+      })
+      
+      elem.addEventListener('focusin', () => {
+        elem.textContent = elemOriginal
+        isHover = true
+      })
+    
+      elem.addEventListener('mouseout', () => {
+        isHover = false
+      })
+    
+      elem.addEventListener('focusout', () => {
+        isHover = false
+      })
+    }
+  
+    setInterval(() => {
+      
+      let symbol = ['!', '*', '#', '@', '%', '$', '^']
+      let innerText = elem.textContent.split('')
+      innerText[Math.floor(Math.random() * innerText.length)] = symbol[Math.floor(Math.random() * symbol.length)]
+  
+      if(intervalCount == maxLengthInterval) {
+        elem.textContent = elemOriginal
+        intervalCount = 0
+      } else if(intervalCount > elemLimitBeforeChanging && !isHover) {
+        elem.textContent = innerText.join('')
+      }
+  
+      intervalCount++
+    }, interval)
+  })
 
-    intervalCount++
-  }, interval)
+  if(debug) console.groupEnd()
 }
 
 {letterChanger('.change')}
