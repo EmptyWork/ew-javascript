@@ -6,6 +6,8 @@ const ctx = canvas.getContext('2d')
 CANVAS_WIDTH = canvas.width = innerWidth
 CANVAS_HEIGHT = canvas.height = innerHeight
 
+DEBUG = false
+
 let gameFrame = 0
 
 const FigureImage = new Image()
@@ -29,22 +31,22 @@ class Figure{
     if(this.debug) {
       ctx.strokeRect(
       this.x + this.width, 
-      this.y - this.height, // y coordinate 
-      this.width, // the size of the Figure
-      this.height // the size of the Figure
+      this.y - this.height, //? y coordinate 
+      this.width, //? the size of the Figure
+      this.height //? the size of the Figure
       )
     }
 
     ctx.drawImage(
       FigureImage,
-      this.frame * this.spriteWidth,
-      0, 
-      this.spriteWidth, // the size of the Sprite
-      this.spriteHight, // the size of the Sprite
+      this.frame * this.spriteWidth, //? the start width of the Sprite
+      0, //? the start height of the Sprite
+      this.spriteWidth, //? the width of the Sprite
+      this.spriteHight, //? the height of the Sprite
       this.x + this.width, 
-      this.y - this.height, // y coordinate
-      this.width, // the size of the Figure
-      this.height // the size of the Figure
+      this.y - this.height, //? y coordinate
+      this.width, //? the size of the Figure
+      this.height //? the size of the Figure
       )
   }
 
@@ -55,7 +57,7 @@ class Figure{
   }
 }
 
-const player = new Figure(CANVAS_WIDTH, CANVAS_HEIGHT)
+const crawler = new Figure(CANVAS_WIDTH, CANVAS_HEIGHT, DEBUG)
 
 const animate = () => {
   requestAnimationFrame(animate)
@@ -67,18 +69,27 @@ const animate = () => {
     CANVAS_HEIGHT
     )
     
-  player.update()
+  crawler.update()
   gameFrame++
 }
 
-
-{
-  animate()
-}
-
-
 window.addEventListener('resize', () => {
+  let oldWidth = CANVAS_WIDTH
   CANVAS_WIDTH = canvas.width = innerWidth
   CANVAS_HEIGHT = canvas.height = innerHeight
-  player.y = CANVAS_HEIGHT + 9
+  crawler.y = CANVAS_HEIGHT + 9
+  crawler.x -= (oldWidth - CANVAS_WIDTH)
+
+  if(DEBUG) {
+    console.log(
+      `Old Width: ${oldWidth}`,
+      `\nNew Width: ${CANVAS_WIDTH}`,
+      `\nOW-NW: ${oldWidth - CANVAS_WIDTH}`,
+      `\nPlayer x: ${crawler.x}`,
+      `\nNew Player x: ${crawler.x - (oldWidth - CANVAS_WIDTH)}`
+    );
+  }
+
 })
+
+animate()
