@@ -1,4 +1,36 @@
-/** @type {HTMLCanvasElement} */
+/**
+ * @type {HTMLCanvasElement}
+ * 
+ * Copyright (C) 2020 EmptyWork
+ * Site <https://emptywork.netlify.app>
+ * 
+ *                                         
+ *                                         
+ *                       ,,.               
+ *                    ,lxNNk;              
+ *                   .,lkNMMNk;            
+ *         .',,.   ;d;   :O0kkOx;          
+ *         :XWWk',kNNc .'dKk;.:XNx'        
+ *         cNMMO:kMMWkx0XMMMNxdXMNc        
+ *         cNMMOcOMMMMMMMWWMMMOlkKc        
+ *         cNMMOcOMMMMWN0lkWMMx..,.        
+ *         cNMNOONMMM0c'. oWMMx.           
+ *         cXO::0MMMNc    oWMNl            
+ *         c0l.'0MWXo.    oXk;             
+ *         cNNklokd'      ',               
+ *         cNMMk'.                         
+ *         cNXd'                           
+ *         ,l'                             
+ *                                         
+ *                                         
+ *                                         
+ * 
+ * @package {Ew-Javascript}
+ * @brief Learning the best way to approach any problem with Modern JavaScript
+ * 
+ * Repo link: <https://github.com/EmptyWork/ew-javascript/tree/gh-pages> 
+ * Live Demo: <https://emptywork.github.io/ew-javascript> 
+ *  */  
 
 const canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
