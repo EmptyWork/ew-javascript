@@ -72,12 +72,12 @@
   
       &::before {
         content: "";
-        bottom: -.4rem;
-        left: -.4rem;
+        bottom: -.4em;
+        left: -.4em;
         position: absolute;
         width: 0%;
         background-color: #000;
-        height: .3rem;
+        height: .3em;
         transition: width 200ms ease-in;
       }
     }
@@ -104,7 +104,7 @@
   @extend .flex;
   
   flex-direction: column;
-  font-size: clamp(.8rem, 2vw, 1rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.6;
 }
 

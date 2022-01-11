@@ -25,6 +25,23 @@
     padding: .5rem 0;
     font-size: clamp(1em, 2.1vw, 1.2em);
     transition: color 200ms ease-out;
+
+    &:is(:hover, :focus)::before {
+      transform: scaleX(1) translateY(-50%);
+    }
+
+    &::before {
+      content: "";
+      top: 50%;
+      left: -.45rem;
+      position: absolute;
+      width: .3rem;
+      background-color: #000;
+      height: 50%;
+      transform: scaleX(0) translateY(-50%);
+      transform-origin: left;
+      transition: transform 200ms ease-in;
+    }
   }
 
   &-menu {
@@ -33,6 +50,35 @@
     
     &_divide {
       @extend .flex;
+
+      padding-bottom: .4em;
+      margin-bottom: -.4em;
+
+      &:focus .navbar-menu-github_repo,
+      & a:focus ~ .navbar-menu-github_repo,
+      & a:hover ~ .navbar-menu-github_repo,
+      &:hover .navbar-menu-github_repo {
+        transform: translateX(0%);
+        
+        opacity: 1;
+        pointer-events: unset;
+      }
+
+      & .navbar-menu-github_repo {
+        transform: translateX(-100%);
+
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 1.9em;
+        right: 0;
+        width: max-content;
+        transition: transform 200ms ease-in;
+
+        a {
+          position: relative;
+        }
+      }
     }
 
     a {
@@ -63,7 +109,6 @@
     padding: 0 1.5rem;
     font-weight: 600;
   }
-
   li {
     list-style: none;
   }

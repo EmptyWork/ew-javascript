@@ -116,12 +116,12 @@ html, body {
 
 .highlight-background.highlight-href::before, .highlight-background_dim.highlight-href::before, .highlight-href.highlight::before, .highlight-href.skipto::before, .navbar-menu a.highlight-href::before {
   content: "";
-  bottom: -.4rem;
-  left: -.4rem;
+  bottom: -.4em;
+  left: -.4em;
   position: absolute;
   width: 0%;
   background-color: #000;
-  height: .3rem;
+  height: .3em;
   -webkit-transition: width 200ms ease-in;
   transition: width 200ms ease-in;
 }
@@ -149,7 +149,7 @@ html, body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.6;
 }
 
@@ -214,8 +214,67 @@ html, body {
   transition: color 200ms ease-out;
 }
 
+.navbar-left:is(:hover, :focus)::before {
+  -webkit-transform: scaleX(1) translateY(-50%);
+          transform: scaleX(1) translateY(-50%);
+}
+
+.navbar-left::before {
+  content: "";
+  top: 50%;
+  left: -.45rem;
+  position: absolute;
+  width: .3rem;
+  background-color: #000;
+  height: 50%;
+  -webkit-transform: scaleX(0) translateY(-50%);
+          transform: scaleX(0) translateY(-50%);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: -webkit-transform 200ms ease-in;
+  transition: -webkit-transform 200ms ease-in;
+  transition: transform 200ms ease-in;
+  transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
+}
+
 .navbar-menu {
   letter-spacing: .1rem;
+  position: relative;
+}
+
+.navbar-menu_divide {
+  padding-bottom: .4em;
+  margin-bottom: -.4em;
+}
+
+.navbar-menu_divide:focus .navbar-menu-github_repo,
+.navbar-menu_divide a:focus ~ .navbar-menu-github_repo,
+.navbar-menu_divide a:hover ~ .navbar-menu-github_repo,
+.navbar-menu_divide:hover .navbar-menu-github_repo {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.navbar-menu_divide .navbar-menu-github_repo {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 1.9em;
+  right: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transition: -webkit-transform 200ms ease-in;
+  transition: -webkit-transform 200ms ease-in;
+  transition: transform 200ms ease-in;
+  transition: transform 200ms ease-in, -webkit-transform 200ms ease-in;
+}
+
+.navbar-menu_divide .navbar-menu-github_repo a {
   position: relative;
 }
 
