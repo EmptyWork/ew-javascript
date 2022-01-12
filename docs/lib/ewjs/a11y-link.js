@@ -1,3 +1,24 @@
+/**
+ * Copyright (C) 2020 EmptyWork
+ * Site <https://emptywork.netlify.app>
+ *
+ *                       ,,.
+ *                    ,lxNNk;
+ *                   .,lkNMMNk;
+ *         .',,.   ;d;   :O0kkOx;
+ *         :XWWk',kNNc .'dKk;.:XNx'
+ *         cNMMO:kMMWkx0XMMMNxdXMNc
+ *         cNMMOcOMMMMMMMWWMMMOlkKc
+ *         cNMMOcOMMMMWN0lkWMMx..,.
+ *         cNMNOONMMM0c'. oWMMx.
+ *         cXO::0MMMNc    oWMNl
+ *         c0l.'0MWXo.    oXk;
+ *         cNNklokd'      ',
+ *         cNMMk'.
+ *         cNXd'
+ *         ,l'
+ *  */
+
 const makeA11yLinks = () => {
   const externalLinks = document.querySelectorAll("a[target=_blank]")
 
@@ -18,6 +39,4 @@ const makeA11yLinks = () => {
   })
 }
 
-{
-  makeA11yLinks()
-}
+makeA11yLinks()
