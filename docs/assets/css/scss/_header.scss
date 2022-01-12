@@ -8,17 +8,17 @@
   &-action {
     @extend .flex;
 
-    gap: 1rem;
+    gap: 1em;
     flex-direction: column;
     max-width: fit-content;
     width: 100%;
 
     &-button {
-      margin-top: 1rem;
+      margin-top: 1em;
       position: relative;
-      padding-right: 1.2rem;
-      margin-left: -.8rem;
-      padding-left: .8rem;
+      padding-right: 1.2em;
+      margin-left: -.8em;
+      padding-left: .8em;
 
       &:hover,
       &:focus {

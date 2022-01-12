@@ -1,9 +1,9 @@
 .container {
-  max-width: 80rem;
+  // max-width: 80rem;
   margin: auto;
   height: 100%;
   width: 100%;
-  padding: 2rem;
+  padding: 2em;
 }
 
 ::selection {
@@ -32,7 +32,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  padding: .5rem;
+  padding: .5em;
   transform: translateY(-120%);
   transition: transform 200ms ease;
   z-index: 10;
@@ -104,7 +104,7 @@
   @extend .flex;
   
   flex-direction: column;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 1vw, 5rem);
   line-height: 1.6;
 }
 
