@@ -132,13 +132,13 @@ class Crawler extends Figure {
 
   figureRezise(width, height) {
     this.minSize = width * 0.005
-    
-    if(this.minSize > 90) this.minSize = 20
-    if(this.minSize < 5) this.minSize = 7
-    this.width = this.spriteWidth * this.minSize / 100
-    this.height = this.spriteHeight * this.minSize / 100
-    
-    this.y = height + (this.height * 12 / 100)
+
+    if (this.minSize > 90) this.minSize = 20
+    if (this.minSize < 5) this.minSize = 7
+    this.width = (this.spriteWidth * this.minSize) / 100
+    this.height = (this.spriteHeight * this.minSize) / 100
+
+    this.y = height + (this.height * 12) / 100
   }
 
   update() {
@@ -146,7 +146,7 @@ class Crawler extends Figure {
 
     this.x < -this.width * 2
       ? (this.x = SCENE_WIDTH + this.width)
-      : (this.x -= Math.floor(this.width * .02))
+      : (this.x -= Math.floor(this.width * 0.02))
   }
 }
 
@@ -163,18 +163,18 @@ const animate = () => {
 }
 
 window.addEventListener("resize", () => {
-  let oldWidth = SCENE_WIDTH
-
   SCENE_WIDTH = scene.width = innerWidth
   SCENE_HEIGHT = scene.height = innerHeight
+
+  let oldWidth = SCENE_WIDTH
 
   crawler.x -= oldWidth - SCENE_WIDTH
 
   crawler.figureRezise(SCENE_WIDTH, SCENE_HEIGHT)
 
   if (ENV.debug) {
-    console.group('Object')
-    console.log(crawler);
+    console.group("Object")
+    console.log(crawler)
     console.log(`Old Width: ${oldWidth}`)
     console.log(`New Width: ${SCENE_WIDTH}`)
     console.log(`OW-NW: ${oldWidth - SCENE_WIDTH}`)
