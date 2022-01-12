@@ -75,7 +75,7 @@ CrawlerImage.src = "./assets/image/spritesheet.png"
 class Figure {
   constructor(_x, _y, _debug = null) {
     this.x = _x
-    this.y = _y + 5
+    this.y = _y
     this.debug = _debug
 
     this.width = 200
@@ -110,9 +110,8 @@ class Crawler extends Figure {
 
     this.spriteWidth = 1216
     this.spriteHeight = 789
-    this.minSize = SCENE_WIDTH * 0.005
-    this.width = this.spriteWidth * this.minSize / 100
-    this.height = this.spriteHeight * this.minSize / 100
+
+    this.figureRezise(_x, _y)
   }
 
   draw(_debug = null) {
@@ -131,12 +130,15 @@ class Crawler extends Figure {
     )
   }
 
-  figureRezise() {
-    this.minSize = SCENE_WIDTH * 0.005
+  figureRezise(width, height) {
+    this.minSize = width * 0.005
+    
     if(this.minSize > 90) this.minSize = 20
-    if(this.minSize < 5) this.minSize = 5
+    if(this.minSize < 5) this.minSize = 7
     this.width = this.spriteWidth * this.minSize / 100
     this.height = this.spriteHeight * this.minSize / 100
+    
+    this.y = height + (this.height * 12 / 100)
   }
 
   update() {
@@ -166,7 +168,6 @@ window.addEventListener("resize", () => {
   SCENE_WIDTH = scene.width = innerWidth
   SCENE_HEIGHT = scene.height = innerHeight
 
-  crawler.y = SCENE_HEIGHT + 5
   crawler.x -= oldWidth - SCENE_WIDTH
 
   crawler.figureRezise(SCENE_WIDTH, SCENE_HEIGHT)
