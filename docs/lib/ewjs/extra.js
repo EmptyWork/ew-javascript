@@ -75,7 +75,7 @@ CrawlerImage.src = "./assets/image/spritesheet.png"
 class Figure {
   constructor(_x, _y, _debug = null) {
     this.x = _x
-    this.y = _y + 9
+    this.y = _y + 5
     this.debug = _debug
 
     this.width = 200
@@ -109,9 +109,10 @@ class Crawler extends Figure {
     super(_x, _y, _debug)
 
     this.spriteWidth = 1216
-    this.spriteHight = 789
-    this.width = this.spriteWidth / 20
-    this.height = this.spriteWidth / 20
+    this.spriteHeight = 789
+    this.minSize = SCENE_WIDTH * 0.005
+    this.width = this.spriteWidth * this.minSize / 100
+    this.height = this.spriteHeight * this.minSize / 100
   }
 
   draw(_debug = null) {
@@ -122,7 +123,7 @@ class Crawler extends Figure {
       this.frame * this.spriteWidth, //? the start width of the Sprite
       0, //? the start height of the Sprite
       this.spriteWidth, //? the width of the Sprite
-      this.spriteHight, //? the height of the Sprite
+      this.spriteHeight, //? the height of the Sprite
       this.x + this.width,
       this.y - this.height, //? y coordinate
       this.width, //? the size of the Figure
@@ -130,12 +131,20 @@ class Crawler extends Figure {
     )
   }
 
+  figureRezise() {
+    this.minSize = SCENE_WIDTH * 0.005
+    if(this.minSize > 90) this.minSize = 20
+    if(this.minSize < 5) this.minSize = 5
+    this.width = this.spriteWidth * this.minSize / 100
+    this.height = this.spriteHeight * this.minSize / 100
+  }
+
   update() {
     super.update()
 
     this.x < -this.width * 2
       ? (this.x = SCENE_WIDTH + this.width)
-      : (this.x -= 1)
+      : (this.x -= Math.floor(this.width * .02))
   }
 }
 
@@ -157,17 +166,20 @@ window.addEventListener("resize", () => {
   SCENE_WIDTH = scene.width = innerWidth
   SCENE_HEIGHT = scene.height = innerHeight
 
-  crawler.y = SCENE_HEIGHT + 9
+  crawler.y = SCENE_HEIGHT + 5
   crawler.x -= oldWidth - SCENE_WIDTH
 
+  crawler.figureRezise(SCENE_WIDTH, SCENE_HEIGHT)
+
   if (ENV.debug) {
-    console.log(
-      `Old Width: ${oldWidth}`,
-      `\nNew Width: ${SCENE_WIDTH}`,
-      `\nOW-NW: ${oldWidth - SCENE_WIDTH}`,
-      `\nPlayer x: ${crawler.x}`,
-      `\nNew Player x: ${crawler.x - (oldWidth - SCENE_WIDTH)}`
-    )
+    console.group('Object')
+    console.log(crawler);
+    console.log(`Old Width: ${oldWidth}`)
+    console.log(`New Width: ${SCENE_WIDTH}`)
+    console.log(`OW-NW: ${oldWidth - SCENE_WIDTH}`)
+    console.log(`Player x: ${crawler.x}`)
+    console.log(`New Player x: ${crawler.x - (oldWidth - SCENE_WIDTH)}`)
+    console.groupEnd()
   }
 })
 
