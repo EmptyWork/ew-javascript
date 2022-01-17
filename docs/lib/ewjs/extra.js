@@ -89,10 +89,14 @@ class Figure {
 
     if (_debug) {
       ctx.strokeRect(
+        // NOTE: x coordinate
         this.x + this.width,
-        this.y - this.height, //? y coordinate
-        this.width, //? the size of the Figure
-        this.height //? the size of the Figure
+        // NOTE: y coordinate
+        this.y - this.height, 
+        // NOTE: the size of the Figure
+        this.width, 
+        // NOTE: the size of the Figure 
+        this.height 
       )
     }
   }
@@ -119,14 +123,22 @@ class Crawler extends Figure {
 
     ctx.drawImage(
       CrawlerImage,
-      this.frame * this.spriteWidth, //? the start width of the Sprite
-      0, //? the start height of the Sprite
-      this.spriteWidth, //? the width of the Sprite
-      this.spriteHeight, //? the height of the Sprite
+      // NOTE: the start width of the Sprite
+      this.frame * this.spriteWidth, 
+      // NOTE: the start height of the Sprite
+      0, 
+      // NOTE: the width of the Sprite
+      this.spriteWidth, 
+      // NOTE: the height of the Sprite
+      this.spriteHeight, 
+      // NOTE: x coordinate
       this.x + this.width,
-      this.y - this.height, //? y coordinate
-      this.width, //? the size of the Figure
-      this.height //? the size of the Figure
+      // NOTE: y coordinate
+      this.y - this.height,
+      // NOTE: the size of the Figure
+      this.width, 
+      // NOTE: the size of the Figure
+      this.height 
     )
   }
 
