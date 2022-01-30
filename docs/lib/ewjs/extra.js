@@ -84,8 +84,7 @@ class Figure {
     this.frame = 0
   }
 
-  draw(_debug = null) {
-    if (!_debug) _debug == this.debug
+  draw(_debug = this.debug) {
 
     if (_debug) {
       ctx.strokeRect(
