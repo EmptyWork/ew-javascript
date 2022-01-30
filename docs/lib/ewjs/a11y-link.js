@@ -31,12 +31,18 @@ const makeA11yLinks = () => {
     elem.appendChild(spanElement)
   }
 
-  externalLinks.forEach((link) => {
+  const addRelAttribute = (link) => {
     link.style.position = "relative"
     if (!link.getAttribute("rel"))
       link.setAttribute("rel", "noopener noreferrer")
+  }
+
+  externalLinks.forEach((link) => {
+    addRelAttribute(link)
     createSpanElement(link)
   })
 }
 
-makeA11yLinks()
+{
+  makeA11yLinks()
+}
