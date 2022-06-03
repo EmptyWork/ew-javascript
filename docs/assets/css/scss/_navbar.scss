@@ -11,7 +11,7 @@
 
   &-brand {
     height: 2em;
-    
+
     &_text {
       font-weight: 700;
     }
@@ -19,10 +19,10 @@
 
   &-left {
     @extend .flex;
-    
+
     align-items: center;
     position: relative;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
     font-size: clamp(1em, 2.1vw, 1.2em);
     transition: color 200ms ease-out;
 
@@ -33,9 +33,9 @@
     &::before {
       content: "";
       top: 50%;
-      left: -.45em;
+      left: -0.45em;
       position: absolute;
-      width: .3em;
+      width: 0.3em;
       background-color: #000;
       height: 50%;
       transform: scaleX(0) translateY(-50%);
@@ -45,27 +45,29 @@
   }
 
   &-menu {
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     position: relative;
-    
+
     &_divide {
       @extend .flex;
 
-      padding-bottom: .4em;
-      margin-bottom: -.4em;
+      padding-bottom: 0.4em;
+      margin-bottom: -0.4em;
 
       &:focus .navbar-menu-github_repo,
       & a:focus ~ .navbar-menu-github_repo,
       & a:hover ~ .navbar-menu-github_repo,
       &:hover .navbar-menu-github_repo {
         transform: translateX(0%);
-        
+
+        visibility: visible;
         opacity: 1;
         pointer-events: unset;
       }
 
       & .navbar-menu-github_repo {
         transform: translateX(-100%);
+        visibility: hidden;
 
         opacity: 0;
         pointer-events: none;
@@ -96,14 +98,14 @@
 
   &-right {
     @extend .flex;
-    
+
     text-transform: uppercase;
     gap: 1em;
   }
 
   &-container {
     @extend .flex;
-    
+
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5em;

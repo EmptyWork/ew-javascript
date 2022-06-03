@@ -28,11 +28,11 @@
 
 .skipto {
   @extend .highlight;
-  
+
   position: fixed;
   left: 0;
   top: 0;
-  padding: .5em;
+  padding: 0.5em;
   transform: translateY(-120%);
   transition: transform 200ms ease;
   z-index: 10;
@@ -43,13 +43,14 @@
 }
 
 .highlight {
-  &:hover::before, &:focus::before {
+  &:hover::before,
+  &:focus::before {
     transform: scaleX(1);
   }
 
   &-color {
     color: var(--highlight);
-    
+
     &_dim {
       color: var(--highlight-dim);
     }
@@ -57,27 +58,27 @@
 
   &-background {
     background-color: var(--highlight);
-  
+
     &_dim {
       background-color: var(--highlight-dim);
     }
-  
+
     &.highlight-href,
     &_dim.highlight-href {
       position: relative;
-  
+
       &:is(:hover, :focus)::before {
         width: 100%;
       }
-  
+
       &::before {
         content: "";
-        bottom: -.4em;
-        left: -.4em;
+        bottom: -0.4em;
+        left: -0.4em;
         position: absolute;
         width: 0%;
         background-color: #000;
-        height: .3em;
+        height: 0.3em;
         transition: width 200ms ease-in;
       }
     }
@@ -102,7 +103,7 @@
 
 .body {
   @extend .flex;
-  
+
   flex-direction: column;
   font-size: clamp(1rem, 1vw, 5rem);
   line-height: 1.6;
