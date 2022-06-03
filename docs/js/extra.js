@@ -85,17 +85,16 @@ class Figure {
   }
 
   draw(_debug = this.debug) {
-
     if (_debug) {
       ctx.strokeRect(
         // NOTE: x coordinate
         this.x + this.width,
         // NOTE: y coordinate
-        this.y - this.height, 
+        this.y - this.height,
         // NOTE: the size of the Figure
-        this.width, 
-        // NOTE: the size of the Figure 
-        this.height 
+        this.width,
+        // NOTE: the size of the Figure
+        this.height
       )
     }
   }
@@ -123,21 +122,21 @@ class Crawler extends Figure {
     ctx.drawImage(
       CrawlerImage,
       // NOTE: the start width of the Sprite
-      this.frame * this.spriteWidth, 
+      this.frame * this.spriteWidth,
       // NOTE: the start height of the Sprite
-      0, 
+      0,
       // NOTE: the width of the Sprite
-      this.spriteWidth, 
+      this.spriteWidth,
       // NOTE: the height of the Sprite
-      this.spriteHeight, 
+      this.spriteHeight,
       // NOTE: x coordinate
       this.x + this.width,
       // NOTE: y coordinate
       this.y - this.height,
       // NOTE: the size of the Figure
-      this.width, 
+      this.width,
       // NOTE: the size of the Figure
-      this.height 
+      this.height
     )
   }
 
@@ -195,4 +194,4 @@ window.addEventListener("resize", () => {
   }
 })
 
-animate()
+CrawlerImage.onload = () => animate()
