@@ -70,7 +70,7 @@ ENV = {
 /* Creating a new Image object */
 const CrawlerImage = new Image()
 /* Giving the CrawlerImage its source */
-CrawlerImage.src = "./assets/image/spritesheet.png"
+CrawlerImage.src = "./assets/images/spritesheet.png"
 
 class Figure {
   constructor(_x, _y, _debug = null) {
