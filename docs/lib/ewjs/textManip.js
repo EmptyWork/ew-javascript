@@ -1,4 +1,4 @@
-const letterChanger = ({id, behavior = false, debug = false}) => {
+const letterChanger = ({ id, behavior = false, debug = false }) => {
   let changes = document.querySelectorAll(id)
   let isHover = false
   let interval = 50
@@ -88,6 +88,7 @@ const letterChanger = ({id, behavior = false, debug = false}) => {
 
 {
   letterChanger({
-    id: ".change"
+    id: ".change",
+    behavior: false,
   })
 }
